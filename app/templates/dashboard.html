@@ -47,13 +47,13 @@
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Administracion</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="{{ url_for('index') }}" >Usuarios </a>
+                            <a href="{{ url_for('usuarios') }}" >Usuarios </a>
                         </li>
                         <li>
-                            <a href="{{ url_for('index') }}">Configuracion</a>
+                            <a href="{{ url_for('configuracion') }}">Configuracion</a>
                         </li>
                         <li>
-                            <a href="{{ url_for('index') }}" >Nodos</a>
+                            <a href="{{ url_for('nodos') }}" >Nodos</a>
                         </li>
 
                     </ul>
@@ -71,7 +71,7 @@
                     <a href="{{ url_for('dashboard') }}" class="download">Inicio</a>
                   </li>
                   <li>
-                      <a href="{{ url_for('index') }}" class="article">Logout</a>
+                      <a href="{{ url_for('logout') }}" class="article">Logout</a>
                   </li>
     
             </ul>
@@ -84,7 +84,7 @@
                 <div class="container-fluid">
 
                     <button type="button" id="sidebarCollapse" class="btn btn-info">
-                        <i class="fas fa-align-left"/i>
+                        <i class="fas fa-align-left"></i>
                         <span> </span>
                     </button>
                     <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
