@@ -67,7 +67,7 @@ def index():
 def dashboard():
 	if 'username' in session:
 		return render_template('dashboard.html')
-    else:
+	else:
 		if request.method=="POST":
 			user={}
 			user['email']=request.form.get("email")
@@ -80,9 +80,6 @@ def dashboard():
 					return redirect(url_for('index'))
 		else:
 				return redirect(url_for('index'))
-	else:
-				return redirect(url_for('index'))
-
 
 
 @app.route('/api', methods=["GET","POST"])
