@@ -1,0 +1,18 @@
+version: '3.2'
+services:
+      mydb:
+        image: mariadb
+        container_name: mydb
+        restart: always
+        environment:
+          MARIADB_ROOT_PASSWORD: 12345
+          MARIADB_USER: admin
+          MARIADB_PASSWORD: 12345
+          MARIADB_DATABASE: MAIN_SENSOR
+        volumes:
+          - db-data:/var/lib/mysql
+        ports:
+          - "3306:3306"
+volumes:
+  db-data:
+
