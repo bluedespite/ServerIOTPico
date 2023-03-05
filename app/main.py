@@ -5,10 +5,11 @@ from urllib.parse import urlparse
 import json
 import llaves
 import bcrypt
+import secrets
 
 API_KEY=llaves.token.encode('UTF-8')
 app = Flask(__name__)
-app.secret_key=bcrypt.hashpw(API_KEY, bcrypt.gensalt())
+app.secret_key = secrets.token_urlsafe(20)
 f=open("database.env")
 dbc = urlparse(f.read())
 f.close()
@@ -62,20 +63,26 @@ def save_db(FECHA_HORA,TAG,UM,VALUE):
 def index():
 	return render_template('index.html')
 
-
 @app.route('/dashboard', methods=["GET","POST"])
 def dashboard():
-	if request.method=="POST":
-		user={}
-		user['email']=request.form.get("email")
-		user['password']=request.form.get("password")
-		if val_user(user):
-			user = {}
-			return render_template('dashboard.html')
+	if 'username' in session:
+		return render_template('dashboard.html')
+    else:
+		if request.method=="POST":
+			user={}
+			user['email']=request.form.get("email")
+			user['password']=request.form.get("password")
+			if val_user(user):
+				session['username']=user['email']
+				user = {}
+				return render_template('dashboard.html')
+			else:
+					return redirect(url_for('index'))
 		else:
-        		return redirect(url_for('index'))
+				return redirect(url_for('index'))
 	else:
-        	return redirect(url_for('index'))
+				return redirect(url_for('index'))
+
 
 
 @app.route('/api', methods=["GET","POST"])
@@ -106,6 +113,11 @@ def api():
 		'data': 0
 		}
 	return json.dumps(message, indent=4)
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return render_template('index.html')
 
 if __name__=='__main__':
     app.run(debug=True,host='0.0.0.0')
