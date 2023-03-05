@@ -47,13 +47,13 @@
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Administracion</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="{{ url_for('usuarios') }}" >Usuarios </a>
+                            <a href="{{ url_for('static','usuarios') }}" >Usuarios </a>
                         </li>
                         <li>
-                            <a href="{{ url_for('configuracion') }}">Configuracion</a>
+                            <a href="{{ url_for('static','configuracion') }}">Configuracion</a>
                         </li>
                         <li>
-                            <a href="{{ url_for('nodos') }}" >Nodos</a>
+                            <a href="{{ url_for('static','nodos') }}" >Nodos</a>
                         </li>
 
                     </ul>
@@ -68,10 +68,10 @@
 
             <ul class="list-unstyled CTAs">
                 <li>
-                    <a href="{{ url_for('dashboard') }}" class="download">Inicio</a>
+                    <a href="{{ url_for('static','dashboard') }}" class="download">Inicio</a>
                   </li>
-                  <li>
-                      <a href="{{ url_for('logout') }}" class="article">Logout</a>
+                  <li>{{ url_for('
+                      <a href="logout') }}" class="article">Logout</a>
                   </li>
     
             </ul>
