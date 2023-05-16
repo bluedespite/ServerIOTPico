@@ -13,6 +13,19 @@ services:
           - db-data:/var/lib/mysql
         ports:
           - "3306:3306"
+      appi:
+        container_name: appi      
+        build: .
+        ports: 
+          - "80:80"
+        depends_on: 
+          - mydb
+        networks: 
+          - mynet
 volumes:
   db-data:
+networks: 
+  mynet:
+    driver: bridge
+
 
