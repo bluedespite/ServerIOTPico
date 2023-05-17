@@ -61,6 +61,7 @@ def save_db(FECHA_HORA,TAG,UM,VALUE):
 @app.route('/')
 @app.route('/index')
 def index():
+	init_db()
 	return render_template('index.html')
 
 @app.route('/dashboard', methods=["GET","POST"])
