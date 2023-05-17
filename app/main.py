@@ -11,6 +11,8 @@ from nodo import *
 from init import *
 from config import *
 from graf import *
+import llaves
+API_KEY=llaves.token.encode('UTF-8')
 
 #Funciones Basicas de configuracion
 user = { 'email':'','password':'','nombre':'','apellido':'','cargo':'','area':'','empresa':'','rol':''}
@@ -281,6 +283,34 @@ def getgeomapdata():
             'data': 0
         }
         return json.dumps(message, indent=4)
+    
+@app.route('/api', methods=["GET","POST"])
+def api():
+	if request.method=="POST":
+		datos=request.json
+		print(datos)
+		hashed=datos['token']
+		if (bcrypt.checkpw(API_KEY,hashed.encode('UTF-8'))):
+			datos['token']=bcrypt.hashpw(API_KEY, bcrypt.gensalt()).decode('UTF-8')
+			save_db(datos['date_time'],'TI60001','°C',datos['temperature'])
+			message = {
+			'status': 200,
+			'message': 'SUCCESS',
+			'data': datos
+			}
+		else:
+			message = {
+			'status': 404,
+			'message': 'FAIL',
+			'data': 0
+			}
+	else:
+		message = {
+		'status': 404,
+		'message': 'FAIL',
+		'data': 0
+		}
+	return json.dumps(message, indent=4)
 
 @app.route('/logout')
 def logout():
