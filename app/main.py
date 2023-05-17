@@ -15,7 +15,7 @@ dbc = urlparse(f.read())
 f.close()
 
 def init_db():
-	connection=pymysql.connect(host='localhost',database='MAIN_SENSOR',user=dbc.username,password=dbc.password)
+    connection=pymysql.connect (host=dbc.hostname,database=dbc.path.lstrip('/'),user=dbc.username,password=dbc.password)
 	cursor=connection.cursor()
 	Query="SHOW TABLES FROM MAIN_SENSOR"
 	cursor.execute(Query)
@@ -35,7 +35,7 @@ def init_db():
 	return
 
 def val_user(user):
-	connection=pymysql.connect(host='localhost',database='MAIN_SENSOR',user=dbc.username,password=dbc.password)
+	connection=pymysql.connect (host=dbc.hostname,database=dbc.path.lstrip('/'),user=dbc.username,password=dbc.password)
 	cursor= connection.cursor()
 	Query="SELECT PASSWORD FROM `USER` WHERE email = %s"
 	cursor.execute(Query,(user['email']))
@@ -49,7 +49,7 @@ def val_user(user):
 		return False
 
 def save_db(FECHA_HORA,TAG,UM,VALUE):
-	connection=pymysql.connect(host='localhost',database='MAIN_SENSOR',user=dbc.username,password=dbc.password)
+	connection=pymysql.connect (host=dbc.hostname,database=dbc.path.lstrip('/'),user=dbc.username,password=dbc.password)
 	cursor=connection.cursor()
 	Query='INSERT INTO DATA (`FECHA_HORA`,`TAG_SENSOR`,`UM`,`MEDIDA`) VALUES ( %s,%s,%s,%s)'
 	cursor.execute(Query,(FECHA_HORA,TAG,UM,VALUE))
