@@ -34,15 +34,15 @@
             <p>Usuario del sistema:</p>
             <input type="text" name="Usuario" class="form-control mb-2" placeholder="Usuario" id="Usuario" ></input>
             <p>Contraseña</p>
-            <input type="password" name="Password" id="password" class="form-control mb-2" placeholder="Password" ></input>
+            <input type="password" name="Password" id="Password" class="form-control mb-2" placeholder="Password" ></input>
             <p>Nueva Contraseña</p>
-            <input type="password" name="Npassword" id="npassword" class="form-control mb-2" placeholder="New Password" ></input> 
+            <input type="password" name="Npassword" id="Npassword" class="form-control mb-2" placeholder="New Password" ></input> 
             <p>Correo Electronico</p>
             <input type="email" name="email" id="Email" class="form-control mb-2" placeholder="Email Corporativo"  ></input>
             <p>Telefono de Contacto:</p>
             <input type="text" name="Telefono" class="form-control mb-2" placeholder="Telefono" id="Telefono" ></input>
             <p>Direccion de Empresa:</p>
-            <input type="text" name="Direccion" class="form-control mb-2" placeholder="Direccion o Area" id= "Direccion" ></input>
+            <input type="text" name="Direccion" class="form-control mb-2" placeholder="Direccion o Area" id="Direccion" ></input>
             <p>Empresa:</p>
             <input type="text" name="Empresa" class="form-control mb-2" placeholder="Razon Social" id="Empresa" ></input>
             <p>Cargo:</p>
@@ -69,8 +69,8 @@
             var fd = new FormData();
             fd.append( 'Nombre', document.getElementById("Nombre").value);
             fd.append( 'Usuario', document.getElementById("Usuario").value);
-            fd.append( 'Password', document.getElementById("password").value);
-            fd.append( 'Npassword', document.getElementById("npassword").value);
+            fd.append( 'Password', document.getElementById("Password").value);
+            fd.append( 'Npassword', document.getElementById("Npassword").value);
             fd.append( 'Email', document.getElementById("Email").value);
             fd.append( 'Telefono', document.getElementById("Telefono").value);
             fd.append( 'Direccion', document.getElementById("Direccion").value);
@@ -101,8 +101,8 @@
         success: function(data) {
             document.getElementById("Nombre").value=data.data["Nombre"];
             document.getElementById("Usuario").value=data.data["Usuario"];
-            document.getElementById("Password").value="12345";
-            document.getElementById("Npassword").value="12345";
+            document.getElementById("Password").value="";
+            document.getElementById("Npassword").value="";
             document.getElementById("Email").value=data.data["Email"];
             document.getElementById("Telefono").value=data.data["Telefono"];
             document.getElementById("Direccion").value=data.data["Direccion"];
