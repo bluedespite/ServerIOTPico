@@ -1,0 +1,18 @@
+Descripcion de la Base de Datos
+
+Tabla USERS
+ID_USUARIO: Identificador único del usuario.
+Nombre: Nombre completo del usuario.
+Usuario: Nombre de usuario.
+Password: Contraseña del usuario.
+Email: Dirección de correo electrónico del usuario.
+Telefono: Número de teléfono del usuario. Default "N/A"
+Direccion: Dirección del usuario. Default "N/A"
+Empresa: Nombre de la empresa del usuario.
+Cargo: Cargo o puesto del usuario en la empresa.
+Rol: Rol o función del usuario en el sistema.
+    'Administrador'
+    'Supervisor'
+    'Usuario'
+Fecha_Registro: Fecha de registro del usuario.
+Ultimo_Inicio_Sesion: Fecha y hora del último inicio de sesión del usuario.

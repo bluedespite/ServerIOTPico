@@ -15,7 +15,7 @@ import llaves
 API_KEY=llaves.token.encode('UTF-8')
 
 #Funciones Basicas de configuracion
-user = { 'email':'','password':'','nombre':'','apellido':'','cargo':'','area':'','empresa':'','rol':''}
+user = { 'Nombre':'','Usuario':'','Password':'','Email':'','Telefono':'','Direccion':'','Empresa':'','Cargo':'','Rol':''}
 CONF = {'ID':'', 'ID_ESTACION': '','ESTACION': '', 'ID_TANQUE':'','TANQUE':'', 'PRODUCTO':'', 'DENSIDAD':'', 'TAG_SENSOR':'','DESCRIPCION':'','UM':'', 'RANGO_MIN':'', 'RANGO_MAX':'','TIPO':'','DIRECCION':'','MASCARA':'','PUERTO':'','ID_COMM':'','SERIAL':'','LINEAR':'','ENABLE':'' }
 DATA = {'ID':'', 'FECHA_HORA': '','TAG_SENSOR': '', 'MEDIDA':'', 'UM':'','VELOCIDAD':'','LATITUD':'', 'LONGITUD':'', 'SALE':'', 'DELIVERY':'' }
 CONX = { 'NOMBRE':'','DIRECCION':'','ENABLE':''}
@@ -35,10 +35,10 @@ def dashboard():
     else:
         if request.method=="POST":
             user={}
-            user['email']=request.form.get("email")
-            user['password']=request.form.get("password")
+            user['Email']=request.form.get("Email")
+            user['Password']=request.form.get("Password")
             if val_user(user):
-                session['username']=user['email']
+                session['username']=user['Email']
                 user = {}
                 return render_template('dashboard.html')
             else:
@@ -118,7 +118,7 @@ def nodos():
 def getuser():
     if 'username' in session:
         if request.method=="POST":
-            user['email']=request.form.get("email")
+            user['Email']=request.form.get("Email")
             return get_user(user)
         else:
             message = {
@@ -139,15 +139,16 @@ def getuser():
 def saveuser():
     if 'username' in session:
         if request.method=="POST":
-            user['nombre']=request.form.get("nombre")
-            user['apellido']=request.form.get("apellido")
-            user['cargo']=request.form.get("cargo")
-            user['rol']=request.form.get("rol")
-            user['area']=request.form.get("area")
-            user['empresa']=request.form.get("empresa")
-            user['email']=request.form.get("email")
-            user['password']=request.form.get("password")
-            user['npassword']=request.form.get("npassword")
+            user['Nombre']=request.form.get("Nombre")
+            user['Usuario']=request.form.get("Usuario")
+            user['Password']=request.form.get("Password")
+            user['Npassword']=request.form.get("Npassword")
+            user['Email']=request.form.get("Email")
+            user['Telefono']=request.form.get("Telefono")
+            user['Direccion']=request.form.get("Direccion")
+            user['Empresa']=request.form.get("Empresa")
+            user['Cargo']=request.form.get("Cargo")
+            user['Rol']=request.form.get("Rol")
             if check_user(user):
                 return update_user(user)
             else:

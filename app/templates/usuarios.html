@@ -29,24 +29,26 @@
             
             <h4>Administrador de Usuarios</h4>
             <div class= "col-8">
-            <p>Correo Electronico</p>
-            <input type="email" name="email" id="email" class="form-control mb-2" placeholder="Email"  ></input>
+            <p>Nombre Completo del Usuario:</p>
+            <input type="text" name="Nombre" class="form-control mb-2" placeholder="Nombre Completo" id="Nombre" ></input>
+            <p>Usuario del sistema:</p>
+            <input type="text" name="Usuario" class="form-control mb-2" placeholder="Usuario" id="Usuario" ></input>
             <p>Contraseña</p>
-            <input type="password" name="password" id="password" class="form-control mb-2" placeholder="Password" ></input>
+            <input type="password" name="Password" id="password" class="form-control mb-2" placeholder="Password" ></input>
             <p>Nueva Contraseña</p>
-            <input type="password" name="npassword" id="npassword" class="form-control mb-2" placeholder="New Password" ></input>
-            <p>Nombres:</p>
-            <input type="text" name="nombre" class="form-control mb-2" placeholder="Nombres" id="nombre" ></input>
-            <p>Apellidos:</p>
-            <input type="text" name="apellido" class="form-control mb-2" placeholder="Apellidos" id="apellido" ></input>
-            <p>Cargo:</p>
-            <input type="text" name="cargo" class="form-control mb-2" placeholder="Cargo" id="cargo" ></input>
-            <p>Area de la Empresa:</p>
-            <input type="text" name="area" class="form-control mb-2" placeholder="Area" id= "area" ></input>
+            <input type="password" name="Npassword" id="npassword" class="form-control mb-2" placeholder="New Password" ></input> 
+            <p>Correo Electronico</p>
+            <input type="email" name="email" id="Email" class="form-control mb-2" placeholder="Email Corporativo"  ></input>
+            <p>Telefono de Contacto:</p>
+            <input type="text" name="Telefono" class="form-control mb-2" placeholder="Telefono" id="Telefono" ></input>
+            <p>Direccion de Empresa:</p>
+            <input type="text" name="Direccion" class="form-control mb-2" placeholder="Direccion o Area" id= "Direccion" ></input>
             <p>Empresa:</p>
-            <input type="text" name="empresa" class="form-control mb-2" placeholder="Empresa" id ="empresa" ></input>
+            <input type="text" name="Empresa" class="form-control mb-2" placeholder="Razon Social" id="Empresa" ></input>
+            <p>Cargo:</p>
+            <input type="text" name="Cargo" class="form-control mb-2" placeholder="Cargo" id="Cargo" ></input>
             <p>Rol de Usuario:</p>
-            <select class="custom-select mb-2" name="role" id="role"  >
+            <select class="custom-select mb-2" name="Rol" id="Rol"  >
                 <option selected>Choose...</option>
                 <option value="Administrador">Administrador</option>
                 <option value="Supervisor">Supervisor</option>
@@ -65,15 +67,16 @@
     <script>
         function save_user(){
             var fd = new FormData();
-            fd.append( 'nombre', document.getElementById("nombre").value);
-            fd.append( 'apellido', document.getElementById("apellido").value);
-            fd.append( 'cargo', document.getElementById("cargo").value);
-            fd.append( 'area', document.getElementById("area").value);
-            fd.append( 'rol', document.getElementById("role").value);
-            fd.append( 'empresa', document.getElementById("empresa").value);
-            fd.append( 'email', document.getElementById("email").value);
-            fd.append( 'password', document.getElementById("password").value);
-            fd.append( 'npassword', document.getElementById("npassword").value);
+            fd.append( 'Nombre', document.getElementById("Nombre").value);
+            fd.append( 'Usuario', document.getElementById("Usuario").value);
+            fd.append( 'Password', document.getElementById("password").value);
+            fd.append( 'Npassword', document.getElementById("npassword").value);
+            fd.append( 'Email', document.getElementById("Email").value);
+            fd.append( 'Telefono', document.getElementById("Telefono").value);
+            fd.append( 'Direccion', document.getElementById("Direccion").value);
+            fd.append( 'Empresa', document.getElementById("Empresa").value);
+            fd.append( 'Cargo', document.getElementById("Cargo").value);
+            fd.append( 'Rol', document.getElementById("Rol").value);
             $.ajax({
         url: "{{ url_for('saveuser') }}",
         data:fd,
@@ -87,7 +90,7 @@
         
         function search_user(){
             var fd = new FormData();
-            fd.append( 'email', document.getElementById("email").value);
+            fd.append( 'Email', document.getElementById("Email").value);
             $.ajax({
         url: "{{ url_for('getuser') }}",
         data:fd,
@@ -96,15 +99,16 @@
         type:"POST",
         dataType: 'json',
         success: function(data) {
-            document.getElementById("nombre").value=data.data["nombre"];
-            document.getElementById("apellido").value=data.data["apellido"];
-            document.getElementById("cargo").value=data.data["cargo"];
-            document.getElementById("area").value=data.data["area"];
-            document.getElementById("role").value=data.data["rol"];
-            document.getElementById("empresa").value=data.data["empresa"];
-            document.getElementById("email").value=data.data["email"];
-            document.getElementById("password").value="";
-            document.getElementById("npassword").value="";
+            document.getElementById("Nombre").value=data.data["Nombre"];
+            document.getElementById("Usuario").value=data.data["Usuario"];
+            document.getElementById("Password").value="";
+            document.getElementById("Npassword").value="";
+            document.getElementById("Email").value=data.data["Email"];
+            document.getElementById("Telefono").value=data.data["Telefono"];
+            document.getElementById("Direccion").value=data.data["Direccion"];
+            document.getElementById("Empresa").value=data.data["Empresa"];
+            document.getElementById("Cargo").value=data.data["Cargo"];
+            document.getElementById("Rol").value=data.data["Rol"];
             console.log(data);
         }})};
         

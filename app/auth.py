@@ -11,14 +11,14 @@ def val_user(user):
     f.close()
     connection=pymysql.connect (host=dbc.hostname,database=dbc.path.lstrip('/'),user=dbc.username,password=dbc.password)
     cursor= connection.cursor()
-    Query="SELECT PASSWORD FROM `USER` WHERE email = %s"
-    cursor.execute(Query,(user['email']))
+    Query="SELECT Password FROM `USERS` WHERE Email = %s"
+    cursor.execute(Query,(user['Email']))
     e=cursor.fetchone()
     cursor.close()
     connection.close()    
     try:
         hashed=e[0].encode('UTF-8')
-        return bcrypt.checkpw(user['password'].encode('UTF-8'), hashed)
+        return bcrypt.checkpw(user['Password'].encode('UTF-8'), hashed)
     except:
         return False
 #Administracion de usuarios
@@ -28,8 +28,8 @@ def check_user(user):
     f.close()
     connection=pymysql.connect (host=dbc.hostname,database=dbc.path.lstrip('/'),user=dbc.username,password=dbc.password)
     cursor=connection.cursor()
-    Query='SELECT * FROM `USER` WHERE email=%s'
-    cursor.execute(Query,(user['email']))
+    Query='SELECT * FROM `USERS` WHERE Email=%s'
+    cursor.execute(Query,(user['Email']))
     lon=cursor.rowcount
     if lon>0:
         return True
@@ -42,11 +42,11 @@ def save_user(user):
     f.close()
     connection=pymysql.connect (host=dbc.hostname,database=dbc.path.lstrip('/'),user=dbc.username,password=dbc.password)
     cursor=connection.cursor()
-    password = user['password'].encode('UTF-8')
+    password = user['Password'].encode('UTF-8')
     hashed = bcrypt.hashpw(password, bcrypt.gensalt())
-    user['hashed'] = hashed.decode('UTF-8')
-    Query='INSERT INTO USER (NOMBRE,APELLIDO,EMAIL,PASSWORD,CARGO, AREA, ROL,EMPRESA) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)'
-    cursor.execute(Query,(user['nombre'],user['apellido'],user['email'],user['hashed'],user['cargo'],user['area'],user['rol'],user['empresa']))
+    user['Hashed'] = hashed.decode('UTF-8')
+    Query='INSERT INTO USERS (Nombre,Usuario, Password,Email,Telefono,Direccion,Empresa,Cargo, Rol) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)'
+    cursor.execute(Query,(user['Nombre'],user['Usuario'],user['hashed'],user['Email'],user['Telefono'],user['Direccion'],user['Empresa'],user['Cargo'],user['Rol']))
     connection.commit()
     cursor.close()
     connection.close()
@@ -64,11 +64,11 @@ def update_user(user):
     f.close()
     connection=pymysql.connect (host=dbc.hostname,database=dbc.path.lstrip('/'),user=dbc.username,password=dbc.password)
     cursor=connection.cursor()
-    password = user['npassword'].encode('UTF-8')
+    password = user['Npassword'].encode('UTF-8')
     hashed = bcrypt.hashpw(password, bcrypt.gensalt())
     user['hashed'] = hashed.decode('UTF-8')
-    Query='UPDATE USER SET NOMBRE = %s, APELLIDO = %s , CARGO = %s, PASSWORD = %s, AREA = %s, EMPRESA = %s, ROL = %s WHERE EMAIL = %s'
-    cursor.execute(Query,(user['nombre'],user['apellido'],user['cargo'],user['hashed'],user['area'],user['empresa'],user['rol'],user['email']))
+    Query='UPDATE USER SET Nombre = %s, Usuario = %s , Password = %s, Telefono = %s, Direccion = %s, Empresa = %s, Cargo = %s,  Rol = %s WHERE Email = %s'
+    cursor.execute(Query,(user['Nombre'],user['Usuario'],user['hashed'],user['Telefono'],user['Direccion'],user['Empresa'],user['Cargo'],user['Rol'],user['Email']))
     connection.commit()
     cursor.close()
     connection.close()
@@ -86,21 +86,23 @@ def get_user(user):
     f.close()
     connection=pymysql.connect (host=dbc.hostname,database=dbc.path.lstrip('/'),user=dbc.username,password=dbc.password)
     cursor=connection.cursor()
-    Query='SELECT * FROM USER WHERE email = %s '
-    cursor.execute(Query,(user['email']))
+    Query='SELECT * FROM USERS WHERE Email = %s '
+    cursor.execute(Query,(user['Email']))
     data=cursor.fetchone()
     lon=cursor.rowcount
     cursor.close()
     connection.close()
-    user = { 'email':'','password':'','nombre':'','apellido':'','cargo':'','area':'','empresa':'','rol':''}
+    user = { 'Nombre':'','Usuario':'','Password':'','Email':'','Telefono':'','Direccion':'','Empresa':'','Cargo':'','Rol':''}
     if lon>0:
-        user['nombre']=data[0]
-        user['apellido']=data[1]
-        user['email']=data[2]
-        user['cargo']=data[4]
-        user['area']=data[5]
-        user['empresa']=data[6]
-        user['rol']=data[7]
+        user['Nombre']=data[0]
+        user['Usuario']=data[1]
+        user['Password']=data[2]
+        user['Email']=data[3]
+        user['Telefono']=data[4]
+        user['Direccion']=data[5]
+        user['Empresa']=data[6]
+        user['Cargo']=data[7]
+        user['Rol']=data[8]
     message = {
         'status': 200,
         'message': 'OK',
