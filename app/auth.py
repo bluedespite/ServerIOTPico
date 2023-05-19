@@ -67,7 +67,7 @@ def update_user(user):
     password = user['Npassword'].encode('UTF-8')
     hashed = bcrypt.hashpw(password, bcrypt.gensalt())
     user['hashed'] = hashed.decode('UTF-8')
-    Query='UPDATE USER SET Nombre = %s, Usuario = %s , Password = %s, Telefono = %s, Direccion = %s, Empresa = %s, Cargo = %s,  Rol = %s WHERE Email = %s'
+    Query='UPDATE USERS SET Nombre = %s, Usuario = %s , Password = %s, Telefono = %s, Direccion = %s, Empresa = %s, Cargo = %s,  Rol = %s WHERE Email = %s'
     cursor.execute(Query,(user['Nombre'],user['Usuario'],user['hashed'],user['Telefono'],user['Direccion'],user['Empresa'],user['Cargo'],user['Rol'],user['Email']))
     connection.commit()
     cursor.close()

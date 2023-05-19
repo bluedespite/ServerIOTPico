@@ -23,7 +23,7 @@ def init_db():
         cursor.execute(Query)
         Query="CREATE TABLE CONX (NOMBRE TEXT NOT NULL UNIQUE, DIRECCION TEXT NOT NULL, ENABLE TEXT NOT NULL);"
         cursor.execute(Query)
-        Query="INSERT INTO USERs (Nombre,Usuario,Password,Email,Telefono,Direccion,Empresa,Cargo,Rol) VALUES ('Miguel Angel Aguirre','mikeatthebass','%s','miguelaguirreleon@gmail.com','N/A','N/A','Dev','Developer','Administrador');" % hashed.decode('UTF-8')
+        Query="INSERT INTO USERS (Nombre,Usuario,Password,Email,Telefono,Direccion,Empresa,Cargo,Rol) VALUES ('Miguel Angel Aguirre','mikeatthebass','%s','miguelaguirreleon@gmail.com','N/A','N/A','Dev','Developer','Administrador');" % hashed.decode('UTF-8')
         cursor.execute(Query)
         connection.commit()
         import test
