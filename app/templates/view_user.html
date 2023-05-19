@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+        <!-- Page Content  -->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span> </span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                   </ul>
+                    </div>
+                </div>
+            </nav>
+        <div>
+            <table>
+                {% for key, value in user.items() %}
+                   <tr>
+                      <th> {{ key }} </th>
+                      <td> {{ value }} </td>
+                   </tr>
+                {% endfor %}
+             </table>
+        </div>
+ 
+        </div>
+        {% endblock %}
+
+        {% block scriptt %}
+    <script>
+        function save_user(){
+            var fd = new FormData();
+            fd.append( 'Nombre', document.getElementById("Nombre").value);
+            fd.append( 'Usuario', document.getElementById("Usuario").value);
+            fd.append( 'Password', document.getElementById("Password").value);
+            fd.append( 'Npassword', document.getElementById("Npassword").value);
+            fd.append( 'Email', document.getElementById("Email").value);
+            fd.append( 'Telefono', document.getElementById("Telefono").value);
+            fd.append( 'Direccion', document.getElementById("Direccion").value);
+            fd.append( 'Empresa', document.getElementById("Empresa").value);
+            fd.append( 'Cargo', document.getElementById("Cargo").value);
+            fd.append( 'Rol', document.getElementById("Rol").value);
+            $.ajax({
+        url: "{{ url_for('saveuser') }}",
+        data:fd,
+        processData: false,
+        contentType: false,
+        type:"POST",
+        dataType: 'json',
+        success: function(data) {
+            console.log(data);
+        }})};
+        
+        function search_user(){
+            var fd = new FormData();
+            fd.append( 'Email', document.getElementById("Email").value);
+            $.ajax({
+        url: "{{ url_for('getuser') }}",
+        data:fd,
+        processData: false,
+        contentType: false,
+        type:"POST",
+        dataType: 'json',
+        success: function(data) {
+            document.getElementById("Nombre").value=data.data["Nombre"];
+            document.getElementById("Usuario").value=data.data["Usuario"];
+            document.getElementById("Password").value="";
+            document.getElementById("Npassword").value="";
+            document.getElementById("Email").value=data.data["Email"];
+            document.getElementById("Telefono").value=data.data["Telefono"];
+            document.getElementById("Direccion").value=data.data["Direccion"];
+            document.getElementById("Empresa").value=data.data["Empresa"];
+            document.getElementById("Cargo").value=data.data["Cargo"];
+            document.getElementById("Rol").value=data.data["Rol"];
+            console.log(data);
+        }})};
+        
+    </script>
+{% endblock %}

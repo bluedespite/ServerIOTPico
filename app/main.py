@@ -98,7 +98,7 @@ def usuarios():
     if 'username' in session:
         return render_template('usuarios.html')
     else:
-        return redirect(url_for('index'))@app.route('/usuarios')
+        return redirect(url_for('index'))
     
 @app.route('/main_usuarios')
 def main_usuarios():
@@ -107,6 +107,22 @@ def main_usuarios():
     else:
         return redirect(url_for('index'))
     
+@app.route('/view_user', methods=["GET","POST"])
+def view_user():
+    if 'username' in session:
+        if request.method=="POST":
+            user={}
+            user['Email']=request.form.get("Email")
+            user=get_user(user)
+            if val_user(user):
+                user = {}
+                return render_template('view_user.html', user=user)
+            else:
+                return redirect(url_for('main_usuarios'))
+        else:
+            return redirect(url_for('index'))
+    else:
+        return redirect(url_for('index'))
 
 
 @app.route('/configuracion')
