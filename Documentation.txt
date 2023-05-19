@@ -16,10 +16,3 @@ Rol: Rol o función del usuario en el sistema.
     'Usuario'
 Fecha_Registro: Fecha de registro del usuario.
 Ultimo_Inicio_Sesion: Fecha y hora del último inicio de sesión del usuario.
-
-                            <li class="nav-item">
-                                <button type="button" class="btn btn-primary" onclick="save_user()">Save</button> 
-                            </li>
-                            <li class="nav-item">
-                                <button type="button" class="btn btn-primary" onclick="search_user()">Search by Email</button> 
-                            </li>
