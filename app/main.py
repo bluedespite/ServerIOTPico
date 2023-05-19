@@ -113,7 +113,7 @@ def view_user():
         if request.method=="POST":
             user={}
             user['Email']=request.form.get("Email")
-            if val_user(user):
+            if check_user(user):
                 user=get_user(user)
                 return render_template('view_user.html', user=user)
             else:
