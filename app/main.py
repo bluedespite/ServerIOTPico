@@ -98,7 +98,15 @@ def usuarios():
     if 'username' in session:
         return render_template('usuarios.html')
     else:
+        return redirect(url_for('index'))@app.route('/usuarios')
+    
+def main_usuarios():
+    if 'username' in session:
+        return render_template('main_usuarios.html')
+    else:
         return redirect(url_for('index'))
+    
+
 
 @app.route('/configuracion')
 def configuracion():
