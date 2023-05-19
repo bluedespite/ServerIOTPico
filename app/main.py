@@ -100,6 +100,7 @@ def usuarios():
     else:
         return redirect(url_for('index'))@app.route('/usuarios')
     
+@app.route('/main_usuarios')
 def main_usuarios():
     if 'username' in session:
         return render_template('main_usuarios.html')
