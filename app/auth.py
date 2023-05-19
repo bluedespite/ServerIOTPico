@@ -94,15 +94,15 @@ def get_user(user):
     connection.close()
     user = { 'Nombre':'','Usuario':'','Password':'','Email':'','Telefono':'','Direccion':'','Empresa':'','Cargo':'','Rol':''}
     if lon>0:
-        user['Nombre']=data[0]
-        user['Usuario']=data[1]
-        user['Password']=data[2]
-        user['Email']=data[3]
-        user['Telefono']=data[4]
-        user['Direccion']=data[5]
-        user['Empresa']=data[6]
-        user['Cargo']=data[7]
-        user['Rol']=data[8]
+        user['Nombre']=data[1]
+        user['Usuario']=data[2]
+        user['Password']=data[3]
+        user['Email']=data[4]
+        user['Telefono']=data[5]
+        user['Direccion']=data[6]
+        user['Empresa']=data[7]
+        user['Cargo']=data[8]
+        user['Rol']=data[9]        
     message = {
         'status': 200,
         'message': 'OK',
