@@ -111,13 +111,13 @@ def main_usuarios():
 def view_user():
     if 'username' in session:
         if request.method=="POST":
-            user={}
+            user = { 'Nombre':'','Usuario':'','Password':'','Email':'','Telefono':'','Direccion':'','Empresa':'','Cargo':'','Rol':'Usuario'}
             user['Email']=request.form.get("Email")
             if check_user(user):
                 user=get_user(user)
-                return render_template('view_user.html', user=user)
             else:
-                return redirect(url_for('main_usuarios'))
+                user = { 'Nombre':'','Usuario':'','Password':'','Email':'','Telefono':'','Direccion':'','Empresa':'','Cargo':'','Rol':'Usuario'}
+            return render_template('view_user.html', user=user)
         else:
             return redirect(url_for('index'))
     else:
