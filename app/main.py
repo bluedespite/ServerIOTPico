@@ -115,7 +115,7 @@ def view_user():
             user['Email']=request.form.get("Email")
             if check_user(user):
                 user=get_user(user)
-                return render_template('view_user.html', user=user)
+                return render_template('view_user.html', Nombre=user['Nombre'],Usuario=user['Usuario'],Email=user['Email'])
             else:
                 return redirect(url_for('main_usuarios'))
         else:
