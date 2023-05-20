@@ -37,9 +37,9 @@
         <p>Direccion de Empresa:</p>
         <input type="text" name="Direccion" class="form-control mb-2" placeholder="Direccion o Area" id="Direccion" value="{{user['Direccion']}}" ></input>
         <p>Empresa:</p>
-        <input type="text" name="Empresa" class="form-control mb-2" placeholder="Razon Social" id="Empresa" value="{{user['Empresa']}}" ></input>
+        <input type="text" name="Empresa" class="form-control mb-2" placeholder="Razon Social" id="Empresa" value="{{user.Empresa}}" ></input>
         <p>Cargo:</p>
-        <input type="text" name="Cargo" class="form-control mb-2" placeholder="Cargo" id="Cargo" value="{{user['Cargo']}}"></input>
+        <input type="text" name="Cargo" class="form-control mb-2" placeholder="Cargo" id="Cargo" value={{user.Cargo}}></input>
         <p>Rol de Usuario:</p>
         <select class="custom-select mb-2" name="Rol" id="Rol"  value="{{user['Rol']}}" >
             <option selected>Choose...</option>
