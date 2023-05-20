@@ -118,7 +118,7 @@ def view_user():
                 Nombre=user['Nombre']
                 Usuario=user['Usuario']
                 Email=user['Email']
-                return render_template('view_user.html', Nombre=Nombre,Usuario=Usuario,Email=Email)
+                return render_template('view_user.html', Nombre=Nombre,Usuario=Usuario,Email=Email,user=user)
             else:
                 return redirect(url_for('main_usuarios'))
         else:
