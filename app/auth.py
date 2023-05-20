@@ -109,4 +109,4 @@ def get_user(user):
         'data': user
     }
     resp =  json.dumps(message, indent=4)
-    return resp
+    return user
