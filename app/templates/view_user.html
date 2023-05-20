@@ -24,23 +24,23 @@
         <form action={{url_for("saveuser")}} method="POST">
         <div class= "col-8">
         <p>Nombre Completo del Usuario:</p>
-        <input type="text" name="Nombre" class="form-control mb-2" placeholder="Nombre Completo" id="Nombre" value="{{user.Nombre}}" ></input>
+        <input type="text" name="Nombre" class="form-control mb-2" placeholder="Nombre Completo" id="Nombre"  ></input>
         <p>Usuario del sistema:</p>
-        <input type="text" name="Usuario" class="form-control mb-2" placeholder="Usuario" id="Usuario" value="{{user.Usuario}}"></input>
+        <input type="text" name="Usuario" class="form-control mb-2" placeholder="Usuario" id="Usuario" ></input>
         <p>Nueva Contraseña</p>
         <input type="password" name="Password" id="Password" class="form-control mb-2" placeholder="Password" required></input>
         <p>Confirmacion Nuevo PassWord</p>
         <input type="password" name="Npassword" id="Npassword" class="form-control mb-2" placeholder="New Password" required></input> 
         <p>Correo Electronico</p>
-        <input type="email" name="Email" id="Email" class="form-control mb-2" placeholder="Email Corporativo" value="{{user.Email}}" required ></input>
+        <input type="email" name="Email" id="Email" class="form-control mb-2" placeholder="Email Corporativo" required ></input>
         <p>Telefono de Contacto:</p>
-        <input type="text" name="Telefono" class="form-control mb-2" placeholder="Telefono" id="Telefono" value="{{user.Telefono}}"></input>
+        <input type="text" name="Telefono" class="form-control mb-2" placeholder="Telefono" id="Telefono" ></input>
         <p>Direccion de Empresa:</p>
-        <input type="text" name="Direccion" class="form-control mb-2" placeholder="Direccion o Area" id="Direccion" value="{{user.Direccion}}" ></input>
+        <input type="text" name="Direccion" class="form-control mb-2" placeholder="Direccion o Area" id="Direccion"  ></input>
         <p>Empresa:</p>
-        <input type="text" name="Empresa" class="form-control mb-2" placeholder="Razon Social" id="Empresa" value="{{user.Empresa}}" ></input>
+        <input type="text" name="Empresa" class="form-control mb-2" placeholder="Razon Social" id="Empresa" ></input>
         <p>Cargo:</p>
-        <input type="text" name="Cargo" class="form-control mb-2" placeholder="Cargo" id="Cargo" value={{user.Cargo}}></input>
+        <input type="text" name="Cargo" class="form-control mb-2" placeholder="Cargo" id="Cargo" ></input>
         <p>Rol de Usuario:</p>
         <select class="custom-select mb-2" name="Rol" id="Rol"  >
             <option value="Administrador">Administrador</option>
@@ -57,8 +57,15 @@
 {% block scriptt %}
 <script>
     window.onload=function() {
+        document.getElementById("Nombre").value="{{user.Nombre}}";
+        document.getElementById("Usuario").value="{{user.Usuario}}";
+        document.getElementById("Password").value="{{user.Password}}";
+        document.getElementById("Email").value="{{user.Email}}";
+        document.getElementById("Telefono").value="{{user.Telefono}}";
+        document.getElementById("Direccion").value="{{user.Direccion}}";
+        document.getElementById("Empresa").value="{{user.Empresa}}";
+        document.getElementById("Cargo").value="{{user.Cargo}}";
         document.getElementById("Rol").value="{{user.Rol}}";
-        console.log(document.getElementById("Rol").value);
     }
 </script>
 
