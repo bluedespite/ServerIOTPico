@@ -122,7 +122,14 @@ def view_user():
             return redirect(url_for('index'))
     else:
         return redirect(url_for('index'))
-
+    
+@app.route('/new_user', methods=["GET","POST"])
+def new_user():
+    if 'username' in session:
+        user = { 'Nombre':'','Usuario':'','Password':'','Email':'','Telefono':'','Direccion':'','Empresa':'','Cargo':'','Rol':''}
+        return render_template('view_user.html', user=user)
+    else:
+        return redirect(url_for('index'))
 
 @app.route('/configuracion')
 def configuracion():
