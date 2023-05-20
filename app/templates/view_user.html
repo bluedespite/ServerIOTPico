@@ -21,6 +21,7 @@
                 </div>
             </nav>
         <h4>Administrador de Usuarios</h4>
+        <form action={{url_for("saveuser")}} method="POST">
         <div class= "col-8">
         <p>Nombre Completo del Usuario:</p>
         <input type="text" name="Nombre" class="form-control mb-2" placeholder="Nombre Completo" id="Nombre" value="{{user.Nombre}}" ></input>
@@ -42,11 +43,12 @@
         <input type="text" name="Cargo" class="form-control mb-2" placeholder="Cargo" id="Cargo" value={{user.Cargo}}></input>
         <p>Rol de Usuario:</p>
         <select class="custom-select mb-2" name="Rol" id="Rol"  value="{{user.Rol}}" >
-            <option selected>Choose...</option>
             <option value="Administrador">Administrador</option>
             <option value="Supervisor">Supervisor</option>
             <option value="Usuario">Usuario</option>
         </select>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
+        </form>
         </div>
  
         </div>

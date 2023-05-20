@@ -50,13 +50,6 @@ def save_user(user):
     connection.commit()
     cursor.close()
     connection.close()
-    message = {
-            'status': 200,
-            'message': 'OK',
-            'data': 'Se insertó registro'
-        }
-    resp =  json.dumps(message, indent=4)
-    return resp
 
 def update_user(user):
     f=open("database.env")
@@ -72,13 +65,6 @@ def update_user(user):
     connection.commit()
     cursor.close()
     connection.close()
-    message = {
-            'status': 200,
-            'message': 'OK',
-            'data': 'Se actualizó Registro'
-        }
-    resp =  json.dumps(message, indent=4)
-    return resp
 
 def get_user(user):
     f=open("database.env")

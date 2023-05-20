@@ -174,23 +174,14 @@ def saveuser():
             user['Cargo']=request.form.get("Cargo")
             user['Rol']=request.form.get("Rol")
             if check_user(user):
-                return update_user(user)
+                update_user(user)
             else:
-                return save_user(user)
+                save_user(user)
+            return redirect(url_for('main_usuarios'))
         else:
-            message = {
-                'status': 404,
-                'message': 'FAIL',
-                'data': 'Actualizacion Fallida'
-            }
-            return json.dumps(message, indent=4)
+            return redirect(url_for('index'))
     else:
-        message = {
-            'status': 404,
-            'message': 'No permitido',
-            'data': 0
-        }
-        return json.dumps(message, indent=4)
+        return redirect(url_for('index'))
 
 
 @app.route('/getnodo', methods=["GET","POST"])
