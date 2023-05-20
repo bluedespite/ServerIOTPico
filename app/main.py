@@ -173,10 +173,11 @@ def saveuser():
             user['Empresa']=request.form.get("Empresa")
             user['Cargo']=request.form.get("Cargo")
             user['Rol']=request.form.get("Rol")
-            if check_user(user):
-                update_user(user)
-            else:
-                save_user(user)
+            if user['Password']==user['Npassword']:
+                if check_user(user):
+                    update_user(user)
+                else:
+                    save_user(user)
             return redirect(url_for('main_usuarios'))
         else:
             return redirect(url_for('index'))
