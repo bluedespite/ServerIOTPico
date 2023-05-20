@@ -42,7 +42,7 @@
         <p>Cargo:</p>
         <input type="text" name="Cargo" class="form-control mb-2" placeholder="Cargo" id="Cargo" value={{user.Cargo}}></input>
         <p>Rol de Usuario:</p>
-        <select class="custom-select mb-2" name="Rol" id="Rol"  value="{{user.Rol}}" >
+        <select class="custom-select mb-2" name="Rol" id="Rol"  >
             <option value="Administrador">Administrador</option>
             <option value="Supervisor">Supervisor</option>
             <option value="Usuario">Usuario</option>
@@ -55,5 +55,10 @@
         {% endblock %}
 
 {% block scriptt %}
- 
+<script>
+    window.onload=function() {
+        document.getElementById("Rol").value={{user.Rol}};
+    }
+</script>
+
 {% endblock %}
