@@ -11,7 +11,7 @@ def check_client(client):
     f.close()
     connection=pymysql.connect (host=dbc.hostname,database=dbc.path.lstrip('/'),user=dbc.username,password=dbc.password)
     cursor=connection.cursor()
-    Query='SELECT * FROM `CLIENT` WHERE RUC=%s'
+    Query='SELECT * FROM `CLIENTS` WHERE RUC=%s'
     cursor.execute(Query,(client['RUC']))
     lon=cursor.rowcount
     if lon>0:
