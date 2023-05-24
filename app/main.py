@@ -7,6 +7,7 @@ app.secret_key = secrets.token_urlsafe(20)
 
 from datetime import datetime
 from auth import *
+from clients import *
 from nodo import *
 from init import *
 from config import *
@@ -16,6 +17,7 @@ API_KEY=llaves.token.encode('UTF-8')
 
 #Funciones Basicas de configuracion
 user = { 'Nombre':'','Usuario':'','Password':'','Email':'','Telefono':'','Direccion':'','Empresa':'','Cargo':'','Rol':''}
+client = { 'Nombre_Empresa':'','Direccion':'','RUC':'','Telefono':'','Persona_Contacto':'','Email':'','Num_cuenta':''}
 CONF = {'ID':'', 'ID_ESTACION': '','ESTACION': '', 'ID_TANQUE':'','TANQUE':'', 'PRODUCTO':'', 'DENSIDAD':'', 'TAG_SENSOR':'','DESCRIPCION':'','UM':'', 'RANGO_MIN':'', 'RANGO_MAX':'','TIPO':'','DIRECCION':'','MASCARA':'','PUERTO':'','ID_COMM':'','SERIAL':'','LINEAR':'','ENABLE':'' }
 DATA = {'ID':'', 'FECHA_HORA': '','TAG_SENSOR': '', 'MEDIDA':'', 'UM':'','VELOCIDAD':'','LATITUD':'', 'LONGITUD':'', 'SALE':'', 'DELIVERY':'' }
 CONX = { 'NOMBRE':'','DIRECCION':'','ENABLE':''}
@@ -93,20 +95,64 @@ def getconf():
         }
         return json.dumps(message, indent=4)
 
-@app.route('/usuarios')
-def usuarios():
+@app.route('/main_clientes')
+def main_clientes():
     if 'username' in session:
-        return render_template('usuarios.html')
+        return render_template('main_clientes.html')
+    else:
+        return redirect(url_for('index'))  
+
+@app.route('/view_client', methods=["GET","POST"])
+def view_user():
+    if 'username' in session:
+        if request.method=="POST":
+            client = { 'Nombre_Empresa':'','Direccion':'','RUC':'','Telefono':'','Persona_Contacto':'','Email':'','Num_cuenta':''}
+            client['RUC']=request.form.get("RUC")
+            if check_client(client):
+                client=get_client(client)
+            return render_template('view_client.html', client=client)
+        else:
+            return redirect(url_for('index'))
+    else:
+        return redirect(url_for('index'))
+ 
+@app.route('/new_client', methods=["GET","POST"])
+def new_user():
+    if 'username' in session:
+        client = { 'Nombre_Empresa':'','Direccion':'','RUC':'','Telefono':'','Persona_Contacto':'','Email':'','Num_cuenta':''}
+        return render_template('view_user.html', client=client)
     else:
         return redirect(url_for('index'))
     
+@app.route('/saveclient', methods=["GET","POST"])
+def saveuser():
+    if 'username' in session:
+        if request.method=="POST":
+            client['Nombre_Empresa']=request.form.get("Nombre_Empresa")
+            client['Direccion']=request.form.get("Direccion")
+            client['RUC']=request.form.get("RUC")
+            client['Telefono_Contacto']=request.form.get("Telefono_Contacto")
+            client['Persona_Contacto']=request.form.get("Persona_Contacto")
+            client['Email']=request.form.get("Email")
+            client['Num_cuenta']=request.form.get("Num_cuenta")
+            if check_client(client):
+                update_client(client)
+            else:
+                save_client(client)
+            return redirect(url_for('main_clientes'))
+        else:
+            return redirect(url_for('index'))
+    else:
+        return redirect(url_for('index'))
+
+
 @app.route('/main_usuarios')
 def main_usuarios():
     if 'username' in session:
         return render_template('main_usuarios.html')
     else:
         return redirect(url_for('index'))
-    
+
 @app.route('/view_user', methods=["GET","POST"])
 def view_user():
     if 'username' in session:
@@ -130,41 +176,6 @@ def new_user():
         return render_template('view_user.html', user=user)
     else:
         return redirect(url_for('index'))
-
-@app.route('/configuracion')
-def configuracion():
-    if 'username' in session:
-        return render_template('configuracion.html')
-    else:
-        return redirect(url_for('index'))
-
-@app.route('/nodos')
-def nodos():
-    if 'username' in session:
-        return render_template('nodos.html')
-    else:
-        return redirect(url_for('index'))
-
-@app.route('/getuser', methods=["GET","POST"])
-def getuser():
-    if 'username' in session:
-        if request.method=="POST":
-            user['Email']=request.form.get("Email")
-            return get_user(user)
-        else:
-            message = {
-                'status': 404,
-                'message': 'FAIL',
-                'data': 0
-            }
-            return json.dumps(message, indent=4)
-    else:
-        message = {
-            'status': 404,
-            'message': 'No permitido',
-            'data': 0
-        }
-        return json.dumps(message, indent=4)
 
 @app.route('/saveuser', methods=["GET","POST"])
 def saveuser():
@@ -190,6 +201,23 @@ def saveuser():
             return redirect(url_for('index'))
     else:
         return redirect(url_for('index'))
+
+
+
+@app.route('/configuracion')
+def configuracion():
+    if 'username' in session:
+        return render_template('configuracion.html')
+    else:
+        return redirect(url_for('index'))
+
+@app.route('/nodos')
+def nodos():
+    if 'username' in session:
+        return render_template('nodos.html')
+    else:
+        return redirect(url_for('index'))
+
 
 
 @app.route('/getnodo', methods=["GET","POST"])

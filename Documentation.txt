@@ -16,3 +16,14 @@ Rol: Rol o función del usuario en el sistema.
     'Usuario'
 Fecha_Registro: Fecha de registro del usuario.
 Ultimo_Inicio_Sesion: Fecha y hora del último inicio de sesión del usuario.
+
+Tabla CLIENTS:
+ID_cliente: Identificador único del cliente.
+Nombre_Empresa: Nombre de la empresa.
+Direccion: Dirección de la empresa.
+RUC: Registro Único del Contribuyente de la empresa.
+Telefono_Contacto: Información de contacto de la empresa.
+Persona_Contacto: Persona de contacto en la empresa.
+Email: Dirección de correo electrónico de la empresa.
+Num_cuenta: Número de cuenta de la empresa.
+Fecha_registro: Fecha de registro de la empresa
