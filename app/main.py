@@ -103,7 +103,7 @@ def main_clientes():
         return redirect(url_for('index'))  
 
 @app.route('/view_client', methods=["GET","POST"])
-def view_user():
+def view_client():
     if 'username' in session:
         if request.method=="POST":
             client = { 'Nombre_Empresa':'','Direccion':'','RUC':'','Telefono':'','Persona_Contacto':'','Email':'','Num_cuenta':''}
@@ -117,7 +117,7 @@ def view_user():
         return redirect(url_for('index'))
  
 @app.route('/new_client', methods=["GET","POST"])
-def new_user():
+def new_client():
     if 'username' in session:
         client = { 'Nombre_Empresa':'','Direccion':'','RUC':'','Telefono':'','Persona_Contacto':'','Email':'','Num_cuenta':''}
         return render_template('view_user.html', client=client)
@@ -125,7 +125,7 @@ def new_user():
         return redirect(url_for('index'))
     
 @app.route('/saveclient', methods=["GET","POST"])
-def saveuser():
+def saveclient():
     if 'username' in session:
         if request.method=="POST":
             client['Nombre_Empresa']=request.form.get("Nombre_Empresa")
