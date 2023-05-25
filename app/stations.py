@@ -31,7 +31,7 @@ def save_station(station):
     cursor.close()
     connection.close()
 
-def update_client(station):
+def update_station(station):
     f=open("database.env")
     dbc = urlparse(f.read())
     f.close()
@@ -43,7 +43,7 @@ def update_client(station):
     cursor.close()
     connection.close()
 
-def get_client(station):
+def get_station(station):
     f=open("database.env")
     dbc = urlparse(f.read())
     f.close()
