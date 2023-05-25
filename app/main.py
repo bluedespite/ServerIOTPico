@@ -215,7 +215,7 @@ def main_estaciones():
         return redirect(url_for('index'))  
 
 @app.route('/view_estacion', methods=["GET","POST"])
-def view_client():
+def view_estacion():
     if 'username' in session:
         if request.method=="POST":
             station = { 'Codigo_Estacion':'','Nombre_Estacion':'', 'Tipo_Estacion':'','Direccion':'','Coordenadas':'','Responsable_Estacion':'','Telefono_Responsable':'','Email':''}
@@ -229,7 +229,7 @@ def view_client():
         return redirect(url_for('index'))
 
 @app.route('/new_estacion', methods=["GET","POST"])
-def new_client():
+def new_estacion():
     if 'username' in session:
         station = { 'Codigo_Estacion':'','Nombre_Estacion':'', 'Tipo_Estacion':'','Direccion':'','Coordenadas':'','Responsable_Estacion':'','Telefono_Responsable':'','Email':''}
         return render_template('view_station.html', station=station)
@@ -237,7 +237,7 @@ def new_client():
         return redirect(url_for('index'))
     
 @app.route('/savestation', methods=["GET","POST"])
-def saveclient():
+def savestation():
     if 'username' in session:
         if request.method=="POST":
             station['Codigo_Estacion']=request.form.get("Codigo_Estacion")
