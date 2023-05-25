@@ -38,7 +38,7 @@ def update_client(client):
     connection=pymysql.connect (host=dbc.hostname,database=dbc.path.lstrip('/'),user=dbc.username,password=dbc.password)
     cursor=connection.cursor()
     Query='UPDATE CLIENTS SET Nombre_Empresa = %s, Direccion = %s , RUC = %s, Telefono_Contacto = %s, Persona_Contacto = %s, Email = %s, Num_cuenta = %s WHERE RUC = %s'
-    cursor.execute(Query,(client['Nombre_Empresa'],client['Direccion'],client['RUC'],client['Telefono_Contacto'],client['Persona_Contacto'],client['Email'],client['Num_cuenta']))
+    cursor.execute(Query,(client['Nombre_Empresa'],client['Direccion'],client['RUC'],client['Telefono_Contacto'],client['Persona_Contacto'],client['Email'],client['Num_cuenta'],client['RUC']))
     connection.commit()
     cursor.close()
     connection.close()
