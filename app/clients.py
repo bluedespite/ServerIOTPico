@@ -64,4 +64,4 @@ def get_client(client):
         client['Persona_Contacto']=data[5]
         client['Email']=data[6]
         client['Num_cuenta']=data[7]          
-    return user
+    return client
