@@ -52,6 +52,9 @@ def get_client(client):
     Query='SELECT * FROM CLIENTS WHERE RUC = %s '
     cursor.execute(Query,(client['RUC']))
     data=cursor.fetchone()
+    print("-------------------------------------------------------- aquiiii")
+    print(data)
+    print(client)
     lon=cursor.rowcount
     cursor.close()
     connection.close()
