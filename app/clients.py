@@ -55,15 +55,13 @@ def get_client(client):
     lon=cursor.rowcount
     cursor.close()
     connection.close()
-    client = { 'Nombre_Empresa':'','Direccion':'','RUC':'','Telefono':'','Persona_Contacto':'','Email':'','Num_cuenta':''}
+    client = { 'Nombre_Empresa':'','Direccion':'','RUC':'','Telefono_Contacto':'','Persona_Contacto':'','Email':'','Num_cuenta':''}
     if lon>0:
         client['Nombre_Empresa']=data[1]
         client['Direccion']=data[2]
         client['RUC']=data[3]
-        client['Telefono']=data[4]
+        client['Telefono_Contacto']=data[4]
         client['Persona_Contacto']=data[5]
         client['Email']=data[6]
         client['Num_cuenta']=data[7]
-    print("-------------------------------------------------------- aquiiii")
-    print(client)          
     return client
