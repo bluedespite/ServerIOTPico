@@ -220,8 +220,8 @@ def view_station():
         if request.method=="POST":
             station = { 'Codigo_Estacion':'','Nombre_Estacion':'', 'Tipo_Estacion':'','Direccion':'','Coordenadas':'','Responsable_Estacion':'','Telefono_Responsable':'','Email':''}
             station['Codigo_Estacion']=request.form.get("Codigo_Estacion")
-            if check_client(station):
-                client=get_client(station)
+            if check_station(station):
+                station=get_station(station)
             return render_template('view_station.html', station=station)
         else:
             return redirect(url_for('index'))
