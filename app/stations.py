@@ -50,7 +50,7 @@ def get_station(station):
     connection=pymysql.connect (host=dbc.hostname,database=dbc.path.lstrip('/'),user=dbc.username,password=dbc.password)
     cursor=connection.cursor()
     Query='SELECT * FROM STATIONS WHERE Codigo_Estacion = %s '
-    cursor.execute(Query,(client['Codigo_Estacion']))
+    cursor.execute(Query,(station['Codigo_Estacion']))
     data=cursor.fetchone()
     lon=cursor.rowcount
     cursor.close()
