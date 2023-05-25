@@ -214,8 +214,8 @@ def main_estaciones():
     else:
         return redirect(url_for('index'))  
 
-@app.route('/view_estacion', methods=["GET","POST"])
-def view_estacion():
+@app.route('/view_station', methods=["GET","POST"])
+def view_station():
     if 'username' in session:
         if request.method=="POST":
             station = { 'Codigo_Estacion':'','Nombre_Estacion':'', 'Tipo_Estacion':'','Direccion':'','Coordenadas':'','Responsable_Estacion':'','Telefono_Responsable':'','Email':''}
