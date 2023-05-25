@@ -25,7 +25,7 @@ def save_client(client):
     f.close()
     connection=pymysql.connect (host=dbc.hostname,database=dbc.path.lstrip('/'),user=dbc.username,password=dbc.password)
     cursor=connection.cursor()
-    Query='INSERT INTO CLIENTS (Nombre_Empresa,Direccion,RUC,Telefono_Contacto,Persona_Contacto,Email,Num_cuenta) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)'
+    Query='INSERT INTO CLIENTS (Nombre_Empresa,Direccion,RUC,Telefono_Contacto,Persona_Contacto,Email,Num_cuenta) VALUES (%s,%s,%s,%s,%s,%s,%s)'
     cursor.execute(Query,(client['Nombre_Empresa'],client['Direccion'],client['RUC'],client['Telefono_Contacto'],client['Persona_Contacto'],client['Email'],client['Num_cuenta']))
     connection.commit()
     cursor.close()
