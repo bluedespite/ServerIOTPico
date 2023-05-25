@@ -6,18 +6,22 @@ app = Flask(__name__)
 app.secret_key = secrets.token_urlsafe(20)
 
 from datetime import datetime
+from init import *
 from auth import *
 from clients import *
+from stations import *
+
 from nodo import *
-from init import *
 from config import *
 from graf import *
+
 import llaves
 API_KEY=llaves.token.encode('UTF-8')
 
 #Funciones Basicas de configuracion
 user = { 'Nombre':'','Usuario':'','Password':'','Email':'','Telefono':'','Direccion':'','Empresa':'','Cargo':'','Rol':''}
 client = { 'Nombre_Empresa':'','Direccion':'','RUC':'','Telefono':'','Persona_Contacto':'','Email':'','Num_cuenta':''}
+station = { 'Nombre_Estacion':'', 'Tipo_Estacion':'','Direccion':'','Coordenadas':''}
 CONF = {'ID':'', 'ID_ESTACION': '','ESTACION': '', 'ID_TANQUE':'','TANQUE':'', 'PRODUCTO':'', 'DENSIDAD':'', 'TAG_SENSOR':'','DESCRIPCION':'','UM':'', 'RANGO_MIN':'', 'RANGO_MAX':'','TIPO':'','DIRECCION':'','MASCARA':'','PUERTO':'','ID_COMM':'','SERIAL':'','LINEAR':'','ENABLE':'' }
 DATA = {'ID':'', 'FECHA_HORA': '','TAG_SENSOR': '', 'MEDIDA':'', 'UM':'','VELOCIDAD':'','LATITUD':'', 'LONGITUD':'', 'SALE':'', 'DELIVERY':'' }
 CONX = { 'NOMBRE':'','DIRECCION':'','ENABLE':''}
@@ -203,6 +207,56 @@ def saveuser():
         return redirect(url_for('index'))
 
 
+@app.route('/main_estaciones')
+def main_estaciones():
+    if 'username' in session:
+        return render_template('main_estaciones.html')
+    else:
+        return redirect(url_for('index'))  
+
+@app.route('/view_estacion', methods=["GET","POST"])
+def view_client():
+    if 'username' in session:
+        if request.method=="POST":
+            station = { 'Codigo_Estacion':'','Nombre_Estacion':'', 'Tipo_Estacion':'','Direccion':'','Coordenadas':'','Responsable_Estacion':'','Telefono_Responsable':'','Email':''}
+            station['Codigo_Estacion']=request.form.get("Codigo_Estacion")
+            if check_client(station):
+                client=get_client(station)
+            return render_template('view_station.html', station=station)
+        else:
+            return redirect(url_for('index'))
+    else:
+        return redirect(url_for('index'))
+
+@app.route('/new_estacion', methods=["GET","POST"])
+def new_client():
+    if 'username' in session:
+        station = { 'Codigo_Estacion':'','Nombre_Estacion':'', 'Tipo_Estacion':'','Direccion':'','Coordenadas':'','Responsable_Estacion':'','Telefono_Responsable':'','Email':''}
+        return render_template('view_station.html', station=station)
+    else:
+        return redirect(url_for('index'))
+    
+@app.route('/savestation', methods=["GET","POST"])
+def saveclient():
+    if 'username' in session:
+        if request.method=="POST":
+            station['Codigo_Estacion']=request.form.get("Codigo_Estacion")
+            station['Nombre_Estacion']=request.form.get("Nombre_Estacion")
+            station['Tipo_Estacion']=request.form.get("Tipo_Estacion")
+            station['Direccion']=request.form.get("Direccion")
+            station['Coordenadas']=request.form.get("Coordenadas")
+            station['Responsable_Estacion']=request.form.get("Responsable_Estacion")
+            station['Telefono_Responsable']=request.form.get("Telefono_Responsable")
+            station['Email']=request.form.get("Email")
+            if check_station(station):
+                update_station(station)
+            else:
+                save_station(station)
+            return redirect(url_for('main_estaciones'))
+        else:
+            return redirect(url_for('index'))
+    else:
+        return redirect(url_for('index'))
 
 @app.route('/configuracion')
 def configuracion():

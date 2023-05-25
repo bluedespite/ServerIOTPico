@@ -26,4 +26,16 @@ Telefono_Contacto: Información de contacto de la empresa.
 Persona_Contacto: Persona de contacto en la empresa.
 Email: Dirección de correo electrónico de la empresa.
 Num_cuenta: Número de cuenta de la empresa.
-Fecha_registro: Fecha de registro de la empresa
+Fecha_registro: Fecha de registro de la empresa, con un valor por defecto establecido como la fecha y hora actual.
+
+Tabla STATIONS:
+ID_estacion: Identificador único de la estación.
+Codigo_Estacion: Codigo Identificador Estacion
+Nombre_Estacion: Nombre de la estación.
+Tipo_Estacion: Tipo de la estación.
+Direccion: Dirección de la estación.
+Coordenadas: Coordenadas geográficas de la estación.
+Responsable_Estacion:Persona Responsable de la estacion
+Telefono_Responsable:Información de contacto de la persona responsable de la estacion
+Email:Dirección de correo electrónico de la Persona Responsable de la estacion
+Fecha_registro: Fecha y hora de registro de la estación, con un valor por defecto establecido como la fecha y hora actual.
