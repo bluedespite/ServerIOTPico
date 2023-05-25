@@ -27,19 +27,19 @@
         <form action={{url_for("saveclient")}} method="POST">
         <div class= "col-8">
         <p>Nombre o Razon Social de la Empresa Cliente:</p>
-        <input type="text" name="Nombre_Empresa" class="form-control mb-2" placeholder="Nombre o Razon Social" id="Nombre_Empresa"  required></input>
+        <input type="text" name="Nombre_Empresa" id="Nombre_Empresa" class="form-control mb-2" placeholder="Nombre o Razon Social"   required></input>
         <p>Direccion de la Empresa Cliente:</p>
-        <input type="text" name="Direccion" class="form-control mb-2" placeholder="Direccion" id="Direccion de la Empresa Cliente" required></input>
+        <input type="text" name="Direccion" id="Direccion" class="form-control mb-2" placeholder="Direccion de la Empresa"  required></input>
         <p>Numero de Registro Único del Contribuyente de la empresa (RUC)</p>
         <input type="text" name="RUC" id="RUC" class="form-control mb-2" placeholder="Numero de RUC" required></input>
         <p>Telefono de Contacto de la Empresa Cliente</p>
         <input type="text" name="Telefono_Contacto" id="Telefono_Contacto" class="form-control mb-2" placeholder="Telefono de Contacto" required></input> 
         <p>Persona de Contacto de la Empresa Cliente:</p>
-        <input type="text" name="Persona_Contacto" class="form-control mb-2" placeholder="Nombre de la Persona de Contacto" id="Telefono" ></input>
+        <input type="text" name="Persona_Contacto" id="Persona_Contacto" class="form-control mb-2" placeholder="Nombre de la Persona de Contacto"  ></input>
         <p>Correo Electronico de Contacto</p>
         <input type="email" name="Email" id="Email" class="form-control mb-2" placeholder="Email Corporativo" required ></input>
         <p>Numero de Cuenta o Centro de Costo:</p>
-        <input type="text" name="Num_cuenta" class="form-control mb-2" placeholder="Numero de Cuenta Operativo" id="Direccion"  ></input>
+        <input type="text" name="Num_cuenta" id="Num_cuenta" class="form-control mb-2" placeholder="Numero de Cuenta Operativo"   ></input>
         <button class=" btn-primary btn-block ml-auto" type="submit">Save</button>
         </form>
         </div>
