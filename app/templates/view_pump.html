@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+        <!-- Page Content  -->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span> </span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <button type="button" class="btn btn-primary" onclick="history.back()">Atras</button> 
+                            </li>
+                   </ul>
+                    </div>
+                </div>
+            </nav>
+        <h4>Administrador de Surtidores y/o Puntos de Despacho</h4>
+        <form action={{url_for("savepump")}} method="POST">
+        <div class= "col-8">
+        <p>Codigo Identificador del Surtidor:</p>
+        <input type="text" name="Codigo_Surtidor" id="Codigo_Surtidor" class="form-control mb-2" placeholder="Codigo Identificador del Surtidor"   ></input>
+        <p>Codigo de la Estacion:</p>
+        <input type="text" name="Codigo_Estacion" id="Codigo_Estacion" class="form-control mb-2" placeholder="Codigo Identificador de la Estacion"  ></input>
+        <p>Estatus del Surtidor:</p>
+        <select class="custom-select mb-2" name="Status" id="Status"  >
+            <option value="MAN">Mantenimiento</option>
+            <option value="HAB">Habilitado para Despachar</option>
+            <option value="DES">Deshabilidato para Despachar</option>
+        </select>
+        <p>Fecha del Ultimo Mantenimiento del Surtidor:</p>
+        <input type="text" name="Ultimo_Mantenimiento" id="Ultimo_Mantenimiento" class="form-control mb-2" placeholder="Fecha del Ultimo Mantenimiento"   ></input>
+        <p>Codigo de la Empresa proveedora que realizo el ultimo Mantenimiento:</p>
+        <input type="text" name="Codigo_Proveedor" id="Codigo_Proveedor" class="form-control mb-2" placeholder="Codigo Proveedor"  ></input>
+        <p>Codigo del Operador Despachador asignado al Surtidor:</p>
+        <input type="text" name="Codigo_Operador" id="Codigo_Operador" class="form-control mb-2" placeholder="Codigo Operador Despachador"  ></input>
+   </form>
+        </div>
+ 
+        </div>
+        {% endblock %}
+
+{% block scriptt %}
+<script>
+    window.onload=function() {
+        document.getElementById("Codigo_Surtidor").value="{{pump.Codigo_Surtidor}}";
+        document.getElementById("Codigo_Estacion").value="{{pump.Codigo_Estacion}}";
+        document.getElementById("Status").value="{{pump.Status}}";
+        document.getElementById("Ultimo_Mantenimiento").value="{{pump.Ultimo_Mantenimiento}}";
+        document.getElementById("Codigo_Proveedor").value="{{pump.Codigo_Proveedor}}";
+        document.getElementById("Codigo_Operador").value="{{pump.Codigo_Operador}}";
+    }
+</script>
+
+{% endblock %}

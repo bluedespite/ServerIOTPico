@@ -39,3 +39,13 @@ Responsable_Estacion:Persona Responsable de la estacion
 Telefono_Responsable:Información de contacto de la persona responsable de la estacion
 Email:Dirección de correo electrónico de la Persona Responsable de la estacion
 Fecha_registro: Fecha y hora de registro de la estación, con un valor por defecto establecido como la fecha y hora actual.
+
+Tabla PUMPS:
+ID_Surtidor: Identificador único del surtidor.
+Codigo_Surtidor: Código del surtidor.
+Codigo_Estacion: Código de la estación asociada al surtidor.
+Status: Estado del surtidor (MAN,HAB,DES)
+Ultimo_Mantenimiento: Fecha del último mantenimiento realizado al surtidor.
+Codigo_Proveedor: Identificador del proveedor asociado al surtidor.
+Codigo_Operador: Identificador del Operador asociado al surtidor.
+Fecha_Registro: Fecha y hora de registro del surtidor, con un valor por defecto establecido como la fecha y hora actual.

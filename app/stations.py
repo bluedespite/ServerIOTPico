@@ -5,7 +5,6 @@ import json
 
 
 
-
 #Administracion de clientes
 def check_station(station):
     f=open("database.env")
