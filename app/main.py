@@ -27,12 +27,15 @@ DATA = {'ID':'', 'FECHA_HORA': '','TAG_SENSOR': '', 'MEDIDA':'', 'UM':'','VELOCI
 CONX = { 'NOMBRE':'','DIRECCION':'','ENABLE':''}
      
 
-#Tablas de Rutas
+#Pagina principal para logueo
 @app.route('/')
 @app.route('/index')
 def index():
     init_db()
     return render_template('index.html')
+
+#--------------------Pagina Principal Resumen--------------------
+
 
 @app.route('/dashboard', methods=["GET","POST"])
 def dashboard():
@@ -98,6 +101,8 @@ def getconf():
             'data': 0
         }
         return json.dumps(message, indent=4)
+    
+#--------------------Empresas Clientes--------------------
 
 @app.route('/main_clientes')
 def main_clientes():
@@ -149,6 +154,7 @@ def saveclient():
     else:
         return redirect(url_for('index'))
 
+#--------------------Usuarios--------------------
 
 @app.route('/main_usuarios')
 def main_usuarios():
@@ -180,6 +186,7 @@ def new_user():
         return render_template('view_user.html', user=user)
     else:
         return redirect(url_for('index'))
+    
 
 @app.route('/saveuser', methods=["GET","POST"])
 def saveuser():
@@ -206,6 +213,8 @@ def saveuser():
     else:
         return redirect(url_for('index'))
 
+
+#       --------------------Estaciones de Despacho--------------------
 
 @app.route('/main_estaciones')
 def main_estaciones():
@@ -257,6 +266,63 @@ def savestation():
             return redirect(url_for('index'))
     else:
         return redirect(url_for('index'))
+
+
+#       --------------------Surtidores --------------------
+
+@app.route('/main_surtidores')
+def main_surtidores():
+    if 'username' in session:
+        return render_template('main_surtidores.html')
+    else:
+        return redirect(url_for('index'))  
+
+@app.route('/view_pump', methods=["GET","POST"])
+def view_pump():
+    if 'username' in session:
+        if request.method=="POST":
+            pump = { 'Codigo_Surtidor':'','Codigo_Estacion':'', 'Status':'','Ultimo_Mantenimiento':'','Codigo_Proveedor':'','Codigo_Operador':''}
+            pump['Codigo_Surtidor']=request.form.get("Codigo_Surtidor")
+            if check_pump(pump):
+                pump=get_pump(pump)
+            return render_template('view_pump.html', pump=pump)
+        else:
+            return redirect(url_for('index'))
+    else:
+        return redirect(url_for('index'))
+
+@app.route('/new_pump', methods=["GET","POST"])
+def new_estacion():
+    if 'username' in session:
+        pump = { 'Codigo_Surtidor':'','Codigo_Estacion':'', 'Status':'','Ultimo_Mantenimiento':'','Codigo_Proveedor':'','Codigo_Operador':''}
+        return render_template('view_pump.html', pump=pump)
+    else:
+        return redirect(url_for('index'))
+    
+@app.route('/savepump', methods=["GET","POST"])
+def savepump():
+    if 'username' in session:
+        if request.method=="POST":
+            pump['Codigo_Surtidor']=request.form.get("Codigo_Surtidor")
+            pump['Codigo_Estacion']=request.form.get("Codigo_Estacion")
+            pump['Status']=request.form.get("Status")
+            pump['Ultimo_Mantenimiento']=request.form.get("Ultimo_Mantenimiento")
+            pump['Codigo_Proveedor']=request.form.get("Codigo_Proveedor")
+            pump['Codigo_Operador']=request.form.get("Codigo_Operador")
+            if check_pump(pump):
+                update_pump(pump)
+            else:
+                save_pump(pump)
+            return redirect(url_for('main_surtidores'))
+        else:
+            return redirect(url_for('index'))
+    else:
+        return redirect(url_for('index'))
+
+
+
+
+#       --------------------Configuracion--------------------        
 @app.route('/configuracion')
 def configuracion():
     if 'username' in session:
