@@ -10,6 +10,7 @@ from init import *
 from auth import *
 from clients import *
 from stations import *
+from pumps import *
 
 from nodo import *
 from config import *
