@@ -26,7 +26,7 @@ def save_pump(pump):
     connection=pymysql.connect (host=dbc.hostname,database=dbc.path.lstrip('/'),user=dbc.username,password=dbc.password)
     cursor=connection.cursor()
     Query='INSERT INTO PUMPS (Codigo_Surtidor,Codigo_Estacion,Status,Ultimo_Mantenimiento,Codigo_Proveedor,Codigo_Operador) VALUES (%s,%s,%s,%s,%s,%s)'
-    cursor.execute(Query,(pump['Codigo_Surtidor'],pump['Codigo_Estacion'],pump['Status'],pump['Ultimo_Manteniminto'],pump['Codigo_Proveedor'],pump['Codigo_Operador']))
+    cursor.execute(Query,(pump['Codigo_Surtidor'],pump['Codigo_Estacion'],pump['Status'],pump['Ultimo_Mantenimiento'],pump['Codigo_Proveedor'],pump['Codigo_Operador']))
     connection.commit()
     cursor.close()
     connection.close()
