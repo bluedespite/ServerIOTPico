@@ -37,7 +37,7 @@ def update_pump(pump):
     f.close()
     connection=pymysql.connect (host=dbc.hostname,database=dbc.path.lstrip('/'),user=dbc.username,password=dbc.password)
     cursor=connection.cursor()
-    Query='UPDATE PUMPS SET Codigo_Surtidor = %s, Codigo_Estacion = %s, Status = %s , Ultimo_Mantenimiento = %s, Codigo_Proveedor = %s, Codigo_Operador = %s, WHERE Codigo_Surtidor = %s'
+    Query='UPDATE PUMPS SET Codigo_Surtidor = %s, Codigo_Estacion = %s, Status = %s , Ultimo_Mantenimiento = %s, Codigo_Proveedor = %s, Codigo_Operador = %s WHERE Codigo_Surtidor = %s'
     cursor.execute(Query,(pump['Codigo_Surtidor'],pump['Codigo_Estacion'],pump['Status'],pump['Ultimo_Mantenimiento'],pump['Codigo_Proveedor'],pump['Codigo_Operador'],pump['Codigo_Surtidor']))
     connection.commit()
     cursor.close()
