@@ -292,7 +292,7 @@ def view_pump():
         return redirect(url_for('index'))
 
 @app.route('/new_pump', methods=["GET","POST"])
-def new_estacion():
+def new_pump():
     if 'username' in session:
         pump = { 'Codigo_Surtidor':'','Codigo_Estacion':'', 'Status':'','Ultimo_Mantenimiento':'','Codigo_Proveedor':'','Codigo_Operador':''}
         return render_template('view_pump.html', pump=pump)
