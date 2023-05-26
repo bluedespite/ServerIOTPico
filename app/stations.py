@@ -37,7 +37,7 @@ def update_station(station):
     f.close()
     connection=pymysql.connect (host=dbc.hostname,database=dbc.path.lstrip('/'),user=dbc.username,password=dbc.password)
     cursor=connection.cursor()
-    Query='UPDATE CLIENTS SET Codigo_Estacion = %s,Nombre_Estacion = %s, Tipo_Estacion = %s , Direccion = %s, Coordenadas = %s, Responsable_Estacion = %s, Telefono_Responsable = %s, Email = %s WHERE Codigo_Estacion = %s'
+    Query='UPDATE STATIONS SET Codigo_Estacion = %s, Nombre_Estacion = %s, Tipo_Estacion = %s , Direccion = %s, Coordenadas = %s, Responsable_Estacion = %s, Telefono_Responsable = %s, Email = %s WHERE Codigo_Estacion = %s'
     cursor.execute(Query,(station['Codigo_Estacion'],station['Nombre_Estacion'],station['Tipo_Estacion'],station['Direccion'],station['Coordenadas'],station['Responsable_Estacion'],station['Telefono_Responsable'],station['Email'],station['Codigo_Estacion']))
     connection.commit()
     cursor.close()
