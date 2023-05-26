@@ -23,6 +23,7 @@ API_KEY=llaves.token.encode('UTF-8')
 user = { 'Nombre':'','Usuario':'','Password':'','Email':'','Telefono':'','Direccion':'','Empresa':'','Cargo':'','Rol':''}
 client = { 'Nombre_Empresa':'','Direccion':'','RUC':'','Telefono':'','Persona_Contacto':'','Email':'','Num_cuenta':''}
 station = { 'Nombre_Estacion':'', 'Tipo_Estacion':'','Direccion':'','Coordenadas':''}
+pump= { 'Codigo_Surtidor':'','Codigo_Estacion':'','Status':'','Ultimo_Mantenimiento:':'','Codigo_Proveedor':'','Codigo_Operador':''}
 CONF = {'ID':'', 'ID_ESTACION': '','ESTACION': '', 'ID_TANQUE':'','TANQUE':'', 'PRODUCTO':'', 'DENSIDAD':'', 'TAG_SENSOR':'','DESCRIPCION':'','UM':'', 'RANGO_MIN':'', 'RANGO_MAX':'','TIPO':'','DIRECCION':'','MASCARA':'','PUERTO':'','ID_COMM':'','SERIAL':'','LINEAR':'','ENABLE':'' }
 DATA = {'ID':'', 'FECHA_HORA': '','TAG_SENSOR': '', 'MEDIDA':'', 'UM':'','VELOCIDAD':'','LATITUD':'', 'LONGITUD':'', 'SALE':'', 'DELIVERY':'' }
 CONX = { 'NOMBRE':'','DIRECCION':'','ENABLE':''}
