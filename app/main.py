@@ -207,57 +207,6 @@ def saveuser():
         return redirect(url_for('index'))
 
 
-@app.route('/main_estaciones')
-def main_estaciones():
-    if 'username' in session:
-        return render_template('main_estaciones.html')
-    else:
-        return redirect(url_for('index'))  
-
-@app.route('/view_station', methods=["GET","POST"])
-def view_station():
-    if 'username' in session:
-        if request.method=="POST":
-            station = { 'Codigo_Estacion':'','Nombre_Estacion':'', 'Tipo_Estacion':'','Direccion':'','Coordenadas':'','Responsable_Estacion':'','Telefono_Responsable':'','Email':''}
-            station['Codigo_Estacion']=request.form.get("Codigo_Estacion")
-            if check_station(station):
-                station=get_station(station)
-            return render_template('view_station.html', station=station)
-        else:
-            return redirect(url_for('index'))
-    else:
-        return redirect(url_for('index'))
-
-@app.route('/new_estacion', methods=["GET","POST"])
-def new_estacion():
-    if 'username' in session:
-        station = { 'Codigo_Estacion':'','Nombre_Estacion':'', 'Tipo_Estacion':'','Direccion':'','Coordenadas':'','Responsable_Estacion':'','Telefono_Responsable':'','Email':''}
-        return render_template('view_station.html', station=station)
-    else:
-        return redirect(url_for('index'))
-    
-@app.route('/savestation', methods=["GET","POST"])
-def savestation():
-    if 'username' in session:
-        if request.method=="POST":
-            station['Codigo_Estacion']=request.form.get("Codigo_Estacion")
-            station['Nombre_Estacion']=request.form.get("Nombre_Estacion")
-            station['Tipo_Estacion']=request.form.get("Tipo_Estacion")
-            station['Direccion']=request.form.get("Direccion")
-            station['Coordenadas']=request.form.get("Coordenadas")
-            station['Responsable_Estacion']=request.form.get("Responsable_Estacion")
-            station['Telefono_Responsable']=request.form.get("Telefono_Responsable")
-            station['Email']=request.form.get("Email")
-            if check_station(station):
-                update_station(station)
-            else:
-                save_station(station)
-            return redirect(url_for('main_estaciones'))
-        else:
-            return redirect(url_for('index'))
-    else:
-        return redirect(url_for('index'))
-
 @app.route('/configuracion')
 def configuracion():
     if 'username' in session:
