@@ -11,6 +11,7 @@ from auth import *
 from clients import *
 from stations import *
 from pumps import *
+from fleets import *
 
 from nodo import *
 from config import *
@@ -24,6 +25,8 @@ user = { 'Nombre':'','Usuario':'','Password':'','Email':'','Telefono':'','Direcc
 client = { 'Nombre_Empresa':'','Direccion':'','RUC':'','Telefono':'','Persona_Contacto':'','Email':'','Num_cuenta':''}
 station = { 'Nombre_Estacion':'', 'Tipo_Estacion':'','Direccion':'','Coordenadas':''}
 pump= { 'Codigo_Surtidor':'','Codigo_Estacion':'','Status':'','Ultimo_Mantenimiento:':'','Codigo_Proveedor':'','Codigo_Operador':''}
+fleet = { 'Codigo_Flota':'','Nombre_Flota':'', 'Codigo_Empresa':'','Centro_Costo':''}
+
 CONF = {'ID':'', 'ID_ESTACION': '','ESTACION': '', 'ID_TANQUE':'','TANQUE':'', 'PRODUCTO':'', 'DENSIDAD':'', 'TAG_SENSOR':'','DESCRIPCION':'','UM':'', 'RANGO_MIN':'', 'RANGO_MAX':'','TIPO':'','DIRECCION':'','MASCARA':'','PUERTO':'','ID_COMM':'','SERIAL':'','LINEAR':'','ENABLE':'' }
 DATA = {'ID':'', 'FECHA_HORA': '','TAG_SENSOR': '', 'MEDIDA':'', 'UM':'','VELOCIDAD':'','LATITUD':'', 'LONGITUD':'', 'SALE':'', 'DELIVERY':'' }
 CONX = { 'NOMBRE':'','DIRECCION':'','ENABLE':''}
@@ -321,6 +324,55 @@ def savepump():
     else:
         return redirect(url_for('index'))
 
+
+#       --------------------Flotas --------------------
+
+@app.route('/main_flotas')
+def main_flotas():
+    if 'username' in session:
+        return render_template('main_flotas.html')
+    else:
+        return redirect(url_for('index'))  
+
+@app.route('/view_fleet', methods=["GET","POST"])
+def view_fleet():
+    if 'username' in session:
+        if request.method=="POST":
+            fleet = { 'Codigo_Flota':'','Nombre_Flota':'', 'Codigo_Empresa':'','Centro_Costo':''}
+            fleet['Codigo_Flota']=request.form.get("Codigo_Flota")
+            if check_fleet(fleet):
+                fleet=get_fleet(fleet)
+            return render_template('view_fleet.html', fleet=fleet)
+        else:
+            return redirect(url_for('index'))
+    else:
+        return redirect(url_for('index'))
+
+@app.route('/new_fleet', methods=["GET","POST"])
+def new_fleet():
+    if 'username' in session:
+        fleet = { 'Codigo_Flota':'','Nombre_Flota':'', 'Codigo_Empresa':'','Centro_Costo':''}
+        return render_template('view_fleet.html', fleet=fleet)
+    else:
+        return redirect(url_for('index'))
+    
+@app.route('/savefleet', methods=["GET","POST"])
+def savefleet():
+    if 'username' in session:
+        if request.method=="POST":
+            fleet['Codigo_Flota']=request.form.get("Codigo_Flota")
+            fleet['Nombre_Flota']=request.form.get("Nombre_Flota")
+            fleet['Codigo_Empresa']=request.form.get("Codigo_Empresa")
+            fleet['Centro_Costo']=request.form.get("Centro_Costo")
+            if check_fleet(fleet):
+                update_fleet(fleet)
+            else:
+                save_fleet(fleet)
+            return redirect(url_for('main_flotas'))
+        else:
+            return redirect(url_for('index'))
+    else:
+        return redirect(url_for('index'))
 
 
 

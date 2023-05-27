@@ -49,3 +49,11 @@ Ultimo_Mantenimiento: Fecha del último mantenimiento realizado al surtidor.
 Codigo_Proveedor: Identificador del proveedor asociado al surtidor.
 Codigo_Operador: Identificador del Operador asociado al surtidor.
 Fecha_Registro: Fecha y hora de registro del surtidor, con un valor por defecto establecido como la fecha y hora actual.
+
+Tabla Fleets:
+ID_flota: Identificador único de la flota.
+Codigo_Flota: Código de la flota.
+Nombre_Flota: Nombre de la flota.
+Codigo_Empresa: Codigo de la Empresa dueña de Flota
+Centro_Costo: Centro de costo asociado a la flota.
+Fecha_Registro: Fecha y hora de registro de la flota, con un valor por defecto establecido como la fecha y hora actual.
