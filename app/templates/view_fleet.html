@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+        <!-- Page Content  -->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span> </span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <button type="button" class="btn btn-primary" onclick="history.back()">Atras</button> 
+                            </li>
+                   </ul>
+                    </div>
+                </div>
+            </nav>
+        <h4>Administrador de Flotas de Vehiculos</h4>
+        <form action={{url_for("savefleet")}} method="POST">
+        <div class= "col-8">
+        <p>Codigo Identificador de la Flota:</p>
+        <input type="text" name="Codigo_Flota" id="Codigo_Flota" class="form-control mb-2" placeholder="Codigo de la Flota"  required ></input>
+        <p>Nombre de la Flota:</p>
+        <input type="text" name="Nombre_Flota" id="Nombre_Flota" class="form-control mb-2" placeholder="Nombre Flota" required ></input>
+        <p>Codigo de la Empresa dueña de Flota:</p>
+        <input type="text" name="Codigo_Empresa" id="Codigo_Empresa" class="form-control mb-2" placeholder="Codigo de la Empresa" required></input>
+        <p>Centro de Costo</p>
+        <input type="text" name="Centro_Costo" id="Centro_Costo" class="form-control mb-2" placeholder="Centro de Costo"   ></input>
+        <button class=" btn-primary btn-block ml-auto" type="submit">Save</button>
+        </form>
+        </div>
+ 
+        </div>
+        {% endblock %}
+
+{% block scriptt %}
+<script>
+    window.onload=function() {
+        document.getElementById("Codigo_Flota").value="{{fleet.Codigo_Flota}}";
+        document.getElementById("Nombre_Flota").value="{{fleet.Nombre_Flota}}";
+        document.getElementById("Codigo_Empresa").value="{{fleet.Codigo_Empresa}}";
+        document.getElementById("Centro_Costo").value="{{fleet.Centro_Costo}}";
+    }
+</script>
+
+{% endblock %}
