@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+        <!-- Page Content  -->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span> </span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                          
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        <link href="{{ url_for('static', filename = 'signin.css') }}" rel="stylesheet">
+        <div class="text-center">
+        <form class="form-signin" action={{url_for("view_vehicle")}} method="POST">
+        <h1 class="h3 mb-3 font-weight-normal">Administracion de  Vehiculos</h1>
+        <label for="Codigo_Flota" class="sr-only">Numero de Placa o Codigo de la Unidad</label>
+        <input type="text" id="Numero_Placa" name="Numero_Placa" class="form-control" placeholder="Placa Vehiculo" autofocus>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Buscar Vehiculos</button>
+        </form>
+        </div>
+        </div>
+        {% endblock %}
+        {% block scriptt %}
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+        <!-- Page Content  -->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span> </span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <button type="button" class="btn btn-primary" onclick="history.back()">Atras</button> 
+                            </li>
+                   </ul>
+                    </div>
+                </div>
+            </nav>
+        <h4>Administrador de Vehiculos</h4>
+        <form action={{url_for("savevehicle")}} method="POST">
+        <div class= "col-8">
+        <p>Numero de Placa o Codigo de la Unidad:</p>
+        <input type="text" name="Numero_Placa" id="Numero_Placa" class="form-control mb-2" placeholder="Codigo de la Flota"  required ></input>
+        <p>Marca del Vehiculo:</p>
+        <input type="text" name="Marca" id="Marca" class="form-control mb-2" placeholder="Marca del Vehiculo" required ></input>
+        <p>Modelo del Vehiculo:</p>
+        <input type="text" name="Modelo" id="Modelo" class="form-control mb-2" placeholder="Modelo del Vehiculo" required></input>
+        <p>Tipo de Combustible que utiliza la unidad</p>
+        <input type="text" name="Tipo_Combustible" id="Tipo_Combustible" class="form-control mb-2" placeholder="Tipo de Combustible"   ></input>
+        <p>Capacidad de Tanque</p>
+        <input type="text" name="Capacidad_Tanque" id="Capacidad_Tanque" class="form-control mb-2" placeholder="Capacidad de Tanque"   ></input>
+        <p>Numero de Poliza del Vehiculo</p>
+        <input type="text" name="Poliza" id="Poliza" class="form-control mb-2" placeholder="Poliza del Vehiculo"   ></input>
+        <p>Fecha de Vencimiento de la Poliza del Vehiculo</p>
+        <input type="text" name="Vencimiento_Poliza" id="Vencimiento_Poliza" class="form-control mb-2" placeholder="Fecha de vencimiento de la poliza"   ></input>
+        <p>Codigo de Flota a la cual esta suscrita la unidad</p>
+        <input type="text" name="Codigo_Flota" id="Codigo_Flota" class="form-control mb-2" placeholder="Codigo de Flota"   ></input>
+        <button class=" btn-primary btn-block ml-auto" type="submit">Save</button>
+        </form>
+        </div>
+ 
+        </div>
+        {% endblock %}
+
+{% block scriptt %}
+<script>
+    window.onload=function() {
+        document.getElementById("Numero_Placa").value="{{vehicle.Numero_Placa}}";
+        document.getElementById("Marca").value="{{vehicle.Marca}}";
+        document.getElementById("Modelo").value="{{vehicle.Modelo}}";
+        document.getElementById("Tipo_Combustible").value="{{vehicle.Tipo_Combustible}}";
+        document.getElementById("Capacidad_Tanque").value="{{vehicle.Capacidad_Tanque}}";
+        document.getElementById("Poliza").value="{{vehicle.Poliza}}";
+        document.getElementById("Vencimiento_Poliza").value="{{vehicle.Vencimiento_Poliza}}";
+        document.getElementById("Codigo_Flota").value="{{vehicle.Codigo_Flota}}";
+    }
+</script>
+
+{% endblock %}

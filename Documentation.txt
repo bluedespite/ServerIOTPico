@@ -54,6 +54,20 @@ Tabla Fleets:
 ID_flota: Identificador único de la flota.
 Codigo_Flota: Código de la flota.
 Nombre_Flota: Nombre de la flota.
-Codigo_Empresa: Codigo de la Empresa dueña de Flota
+RUC: Registro Único del Contribuyente (RUC) de la Empresa.
 Centro_Costo: Centro de costo asociado a la flota.
 Fecha_Registro: Fecha y hora de registro de la flota, con un valor por defecto establecido como la fecha y hora actual.
+
+Tabla Vehicle:
+
+
+ID_vehiculo: Identificador único del vehículo.
+Numero_Placa: Número de placa del vehículo.
+Marca: Marca del vehículo.
+Modelo: Modelo del vehículo.
+Tipo_Combustible: Tipo de combustible utilizado por el vehículo.
+Capacidad_Tanque: Capacidad del tanque de combustible del vehículo.
+Poliza: Número de póliza de seguro del vehículo.
+Vencimiento_Poliza: Fecha de vencimiento de la póliza de seguro.
+Codigo_Flota: Identificador de la flota a la que pertenece el vehículo.
+Fecha_Registro: Fecha y hora de registro del vehículo, con un valor por defecto establecido como la fecha y hora actual.

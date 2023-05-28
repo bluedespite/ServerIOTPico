@@ -12,6 +12,7 @@ from clients import *
 from stations import *
 from pumps import *
 from fleets import *
+from vehicles import *
 
 from nodo import *
 from config import *
@@ -26,6 +27,8 @@ client = { 'Nombre_Empresa':'','Direccion':'','RUC':'','Telefono':'','Persona_Co
 station = { 'Nombre_Estacion':'', 'Tipo_Estacion':'','Direccion':'','Coordenadas':''}
 pump= { 'Codigo_Surtidor':'','Codigo_Estacion':'','Status':'','Ultimo_Mantenimiento:':'','Codigo_Proveedor':'','Codigo_Operador':''}
 fleet = { 'Codigo_Flota':'','Nombre_Flota':'', 'Codigo_Empresa':'','Centro_Costo':''}
+vehicle= { 'Numero_Placa':'', 'Marca':'','Modelo':'', 'Tipo_Combustible':'','Capacidad_Tanque':'','Poliza':'','Vencimiento_Poliza':'','Codigo_Flota':''}
+
 
 CONF = {'ID':'', 'ID_ESTACION': '','ESTACION': '', 'ID_TANQUE':'','TANQUE':'', 'PRODUCTO':'', 'DENSIDAD':'', 'TAG_SENSOR':'','DESCRIPCION':'','UM':'', 'RANGO_MIN':'', 'RANGO_MAX':'','TIPO':'','DIRECCION':'','MASCARA':'','PUERTO':'','ID_COMM':'','SERIAL':'','LINEAR':'','ENABLE':'' }
 DATA = {'ID':'', 'FECHA_HORA': '','TAG_SENSOR': '', 'MEDIDA':'', 'UM':'','VELOCIDAD':'','LATITUD':'', 'LONGITUD':'', 'SALE':'', 'DELIVERY':'' }
@@ -373,6 +376,60 @@ def savefleet():
             return redirect(url_for('index'))
     else:
         return redirect(url_for('index'))
+
+#       --------------------Vehiculos --------------------
+
+@app.route('/main_vehiculos')
+def main_vehiculos():
+    if 'username' in session:
+        return render_template('main_vehiculos.html')
+    else:
+        return redirect(url_for('index'))  
+
+@app.route('/view_vehicle', methods=["GET","POST"])
+def view_vehicle():
+    if 'username' in session:
+        if request.method=="POST":
+            vehicle= { 'Numero_Placa':'', 'Marca':'','Modelo':'','Tipo_Combustible':'','Capacidad_Tanque':'','Poliza':'','Vencimiento_Poliza':'','Codigo_Flota':''}
+            vehicle['Numero_Placa']=request.form.get("Numero_Placa")
+            if check_vehicle(vehicle):
+                fleet=get_vehicle(vehicle)
+            return render_template('view_vehicle.html', vehicle=vehicle)
+        else:
+            return redirect(url_for('index'))
+    else:
+        return redirect(url_for('index'))
+
+@app.route('/new_vehicle', methods=["GET","POST"])
+def new_vehiclet():
+    if 'username' in session:
+        vehicle= { 'Numero_Placa':'', 'Marca':'','Modelo':'', 'Tipo_Combustible':'','Capacidad_Tanque':'','Poliza':'','Vencimiento_Poliza':'','Codigo_Flota':''}
+        return render_template('view_vehicle.html', vehicle=vehicle)
+    else:
+        return redirect(url_for('index'))
+    
+@app.route('/savevehicle', methods=["GET","POST"])
+def savefleet():
+    if 'username' in session:
+        if request.method=="POST":
+            vehicle['Numero_Placa']=request.form.get("Numero_Placa")
+            vehicle['Marca']=request.form.get("Marca")
+            vehicle['Modelo']=request.form.get("Modelo")
+            vehicle['Tipo_Combustible']=request.form.get("Tipo_Combustible")
+            vehicle['Capacidad_Tanque']=request.form.get("Capacidad_Tanque")
+            vehicle['Poliza']=request.form.get("Poliza")
+            vehicle['Vencimiento_Poliza']=request.form.get("Vencimiento_Poliza")
+            vehicle['Codigo_Flota']=request.form.get("Codigo_Flota")
+            if check_vehicle(vehicle):
+                update_vehicle(vehicle)
+            else:
+                save_vehicle(vehicle)
+            return redirect(url_for('main_vehiculos'))
+        else:
+            return redirect(url_for('index'))
+    else:
+        return redirect(url_for('index'))
+
 
 
 
