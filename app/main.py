@@ -401,7 +401,7 @@ def view_vehicle():
         return redirect(url_for('index'))
 
 @app.route('/new_vehicle', methods=["GET","POST"])
-def new_vehiclet():
+def new_vehicle():
     if 'username' in session:
         vehicle= { 'Numero_Placa':'', 'Marca':'','Modelo':'', 'Tipo_Combustible':'','Capacidad_Tanque':'','Poliza':'','Vencimiento_Poliza':'','Codigo_Flota':''}
         return render_template('view_vehicle.html', vehicle=vehicle)
@@ -409,7 +409,7 @@ def new_vehiclet():
         return redirect(url_for('index'))
     
 @app.route('/savevehicle', methods=["GET","POST"])
-def savefleet():
+def savevehicle():
     if 'username' in session:
         if request.method=="POST":
             vehicle['Numero_Placa']=request.form.get("Numero_Placa")
