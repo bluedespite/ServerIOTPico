@@ -37,8 +37,8 @@ def update_vehicle(vehicle):
     f.close()
     connection=pymysql.connect (host=dbc.hostname,database=dbc.path.lstrip('/'),user=dbc.username,password=dbc.password)
     cursor=connection.cursor()
-    Query='UPDATE VEHICLES SET Numero_Placa = %s, Marca = %s, Modelo = %s, Tipo_Combustible = %s, Capacidad_Tanque = %s, Poliza = %s, Vencimiento_Poliza = %s, Codigo_Flota = %s WHERE Codigo_Flota = %s'
-    cursor.execute(Query,(vehicle['Numero_Placa'],vehicle['Marca'],vehicle['Modelo'],vehicle['Tipo_Combustible'],vehicle['Capacidad_Tanque'],vehicle['Poliza'],vehicle['Vencimiento_Poliza'],vehicle['Codigo_Flota']))
+    Query='UPDATE VEHICLES SET Numero_Placa = %s, Marca = %s, Modelo = %s, Tipo_Combustible = %s, Capacidad_Tanque = %s, Poliza = %s, Vencimiento_Poliza = %s, Codigo_Flota = %s WHERE Numero_Placa = %s'
+    cursor.execute(Query,(vehicle['Numero_Placa'],vehicle['Marca'],vehicle['Modelo'],vehicle['Tipo_Combustible'],vehicle['Capacidad_Tanque'],vehicle['Poliza'],vehicle['Vencimiento_Poliza'],vehicle['Numero_Placa']))
     connection.commit()
     cursor.close()
     connection.close()

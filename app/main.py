@@ -393,7 +393,7 @@ def view_vehicle():
             vehicle= { 'Numero_Placa':'', 'Marca':'','Modelo':'','Tipo_Combustible':'','Capacidad_Tanque':'','Poliza':'','Vencimiento_Poliza':'','Codigo_Flota':''}
             vehicle['Numero_Placa']=request.form.get("Numero_Placa")
             if check_vehicle(vehicle):
-                fleet=get_vehicle(vehicle)
+                vehicle=get_vehicle(vehicle)
             return render_template('view_vehicle.html', vehicle=vehicle)
         else:
             return redirect(url_for('index'))
